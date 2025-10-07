@@ -1,6 +1,3 @@
-import json
-import yaml
-import openai
 from openai import OpenAI
 import os
 import sys
@@ -32,8 +29,8 @@ class BaseSelector:
 
 class ClaimFocusedSelector(BaseSelector):
     """
-    Method-Focused Selector Module for selecting the 
-    neighboring document for subsequent literature search
+    CLAIM-Focused Selector Module for selecting the 
+    neighboring document for subsequent patent search
     """
     def __init__(self, args):
         super().__init__(args)
@@ -42,8 +39,8 @@ class ClaimFocusedSelector(BaseSelector):
     
 class MethodFocusedSelector(BaseSelector):
     """
-    Experiment-Focused Selector Module for selecting the 
-    neighboring document for subsesquent literature search
+    Method-Focused Selector Module for selecting the 
+    neighboring document for subsesquent patent search
     """
     def __init__(self, args):
         super().__init__(args)
@@ -52,8 +49,8 @@ class MethodFocusedSelector(BaseSelector):
 
 class BackgroundFocusedSelector(BaseSelector):
     """
-    Research-Question-Focused Selector Module for selecting the neighboring 
-    document for subsesquent literature search
+    Background-Focused Selector Module for selecting the neighboring 
+    document for subsesquent patent search
     """
     
     def __init__(self, args):
@@ -89,7 +86,7 @@ class Selector:
     
     def forward_for_multirounds(self, organized_retrieved_top_corpus_for_refinement: dict) -> dict:
         """
-        Forward Generation of Aspect-Aware Verifiers.
+        Forward Aspect-Aware Selectors.
         """
         def concatenate_aspect_specific_top_corpus(aspect_specific_top_corpus_for_selection):
             formatted_aspect_specific_top_corpus_for_selection = ""

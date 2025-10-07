@@ -18,7 +18,7 @@ def DatasetConfig():
     parser.add_argument("--benchmark_directory", default="")
     parser.add_argument("--remove_citations", default=False, type=lambda x: x.lower() == "true")
     parser.add_argument("--remove_mentions", default=False, type=lambda x: x.lower() == "true")
-    parser.add_argument("--corpus_directory", default="Dataset/Ours/Formatted_Candidate_Paper_Corpus/ICLR_2024/Direct_References/corpus.json")
+    parser.add_argument("--corpus_directory", default="")
 
     args, rem = parser.parse_known_args()
     
@@ -31,7 +31,7 @@ def QueryOptimizerConfig():
 
     parser.add_argument("--use_query_optimizer", type=lambda x: x.lower() == "true", default=False)
     parser.add_argument("--multi_agent", type=lambda x: x.lower() == "true", default=False)
-    parser.add_argument("--query_optimizer_model", default="gpt-4o-mini-2024-07-18")
+    parser.add_argument("--query_optimizer_model", default="")
     parser.add_argument("--use_gpt", default=False, type=lambda x: x.lower() == "true")
     parser.add_argument("--use_base_agent", default=False, type=lambda x: x.lower() == "true")
     parser.add_argument("--use_method_agent", default=True, type=lambda x: x.lower() == "true")
@@ -84,7 +84,7 @@ def RetrievalConfig():
 
 def IterativeRetrievalConfig():
     parser = argparse.ArgumentParser(
-        description="Configuration for Verifiers"
+        description="Configuration for Iterative Retrieval"
     )
 
     parser.add_argument("--iterative_retrieval", default=False, type=lambda x: x.lower() == "true")
@@ -147,10 +147,6 @@ def evaluate(args):
             raise TypeError("Cannot use other aspect-specific agents when using base agents")
         elif args.use_research_question_agent == True:
             raise TypeError("Cannot use other aspect-specific agents when using base agents")
-            
-    #if args.use_multi_source == False:
-        #if args.include_original_retrieval == True:
-            #raise TypeError("When trying to use single source retrieval, you must not include abstract to abstract retrieval")
 
     if args.embedding_fusion == True:
         if args.use_query_optimizer == False or args.multi_agent == False:

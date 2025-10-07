@@ -2,15 +2,12 @@ import torch
 import faiss
 import os
 import sys
-from collections import namedtuple
 import numpy as np
 import torch
 from torch import nn as nn
 import json
 import torch
-from pathlib import Path
 import logging
-import re
 
 current_dir = os.path.dirname(os.path.abspath(__file__))
 root_dir = os.path.dirname(current_dir)

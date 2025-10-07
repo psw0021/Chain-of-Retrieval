@@ -2,17 +2,15 @@ import torch
 import faiss
 import os
 import sys
-from collections import namedtuple
 import numpy as np
 import torch
 from torch import nn as nn
-from transformers import AutoTokenizer, AutoModel
+from transformers import AutoModel
 from sentence_transformers import SentenceTransformer
 from adapters import AutoAdapterModel
 import json
 import torch
 from torch import nn as nn
-from pathlib import Path
 import logging
 from openai import OpenAI
 import tiktoken
@@ -873,8 +871,7 @@ class RetrieverPatents:
 
     def evaluate(self, args, test_file_directory, result_folder_path):
         """
-        Evaluate Retrieval Performance on scientific papers submitted to recent venues, such as ICLR 2024, ICLR 2025.
-        You can either use query optimizer or not. 
+        Evaluate Retrieval Performance on Patent Retrieval. You can either use query optimizer or not. 
         """ 
         total_results = []
         for files in test_file_directory:

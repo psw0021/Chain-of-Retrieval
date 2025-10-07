@@ -7,7 +7,6 @@ import sys
 from pydantic import BaseModel
 import re
 from vllm import LLM, SamplingParams
-from vllm.sampling_params import GuidedDecodingParams
 import torch
 from transformers import AutoTokenizer
 import ast
@@ -30,11 +29,11 @@ class BaseQueryOptimizerAgent:
         self.args = args
         self.model_name = args.query_optimizer_model
         
-        self.openai_models = ["gpt-4o-mini-2024-07-18", "gpt-4o-2024-11-20", "gpt-4.1-2025-04-14", "gpt-4.1-mini-2025-04-14", "gpt-5-mini-2025-08-07", "o4-mini-2025-04-16"]
+        self.openai_models = ["gpt-4o-mini-2024-07-18", "gpt-4o-2024-11-20", "gpt-4.1-2025-04-14"]
         self.use_gpt = args.use_gpt
         self.prompt_path = ""
         self.name = "BASE"
-        #self.vllm_model = vllm_model_dict["BASE"]
+        
         if self.use_gpt == False:
             self.vllm_model = vllm_model_dict["METHOD"]["agent"]
             self.vllm_model_device = vllm_model_dict["METHOD"]["device"]
@@ -51,7 +50,7 @@ class BaseQueryOptimizerAgent:
         
         if self.use_gpt == True:
             assert self.model_name in self.openai_models, f"Error: {self.model_name} is not a valid model name!"
-            if self.model_name != "gpt-4.1-mini-2025-04-14" and self.model_name != "gpt-4.1-2025-04-14" and self.model_name != "gpt-5-mini-2025-08-07" and self.model_name != "o4-mini-2025-04-16":
+            if self.model_name != "gpt-4.1-2025-04-14":
                 self.context_window = 120000
         elif self.use_gpt == False:
             assert self.model_name in self.models, f"Error: {self.model_name} is not a valid model name!"
@@ -80,7 +79,7 @@ class BaseQueryOptimizerAgent:
         
     def open_prompt(self, refinement=False) -> Tuple[str, str]:
         """
-        Open prompt for initial optimization and subsequent refinement
+        Open prompt for initial optimization
         """
         if refinement == False:
             with open(self.prompt_path, "r") as file:
@@ -99,7 +98,7 @@ class BaseQueryOptimizerAgent:
         
         system_prompt, user_prompt = self.open_prompt()
         
-        if self.model_name != "gpt-4.1-mini-2025-04-14" and self.model_name != "gpt-4.1-2025-04-14" and self.model_name != "gpt-5-mini-2025-08-07" and self.model_name != "o4-mini-2025-04-16":
+        if self.model_name != "gpt-4.1-2025-04-14":
             content = self.truncate_input_for_gpt(system_prompt, content)
         else:
             content = content
@@ -113,7 +112,7 @@ class BaseQueryOptimizerAgent:
         
         client = OpenAI()
         
-        if self.model_name != "o3-mini-2025-01-31" and self.model_name != "o4-mini-2025-04-16" and self.model_name != "gpt-4.1-mini-2025-04-14" and self.model_name != "gpt-4.1-2025-04-14" and self.model_name != "gpt-5-mini-2025-08-07":
+        if self.model_name != "gpt-4.1-2025-04-14":
             response = client.chat.completions.create(
                     model=self.model_name,
                     messages=messages,
@@ -192,7 +191,7 @@ class BaseQueryOptimizerAgent:
     
 
 class MethodFocusedQueryOptimizerAgent(BaseQueryOptimizerAgent):
-    """Agent that receives full paper of scientific paper and generates refined query focused on method of given scientific paper"""
+    """Agent that receives full patent and generates refined query focused on method of given patent"""
     
     def __init__(self, args, vllm_model_dict):
         super().__init__(args, vllm_model_dict)
@@ -204,7 +203,7 @@ class MethodFocusedQueryOptimizerAgent(BaseQueryOptimizerAgent):
         
     
 class ClaimFocusedQueryOptimizerAgent(BaseQueryOptimizerAgent):
-    """Agent that receives full paper of scientific paper and generates refined query focused on experiments of given scientific paper"""
+    """Agent that receives full patent and generates refined query focused on claims of given patent"""
     
     def __init__(self, args, vllm_model_dict):
         super().__init__(args, vllm_model_dict)
@@ -216,7 +215,7 @@ class ClaimFocusedQueryOptimizerAgent(BaseQueryOptimizerAgent):
 
 
 class BackgroundFocusedQueryOptimizerAgent(BaseQueryOptimizerAgent):
-    """Agent that receives full paper of scientific paper and generates refined query focused on research question of given scientific paper"""
+    """Agent that receives full patent and generates refined query focused on background of given patent"""
     
     def __init__(self, args, vllm_model_dict):
         super().__init__(args, vllm_model_dict)

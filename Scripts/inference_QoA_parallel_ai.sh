@@ -11,13 +11,13 @@ multi_agent=True
 query_optimizer_model="gpt-4o-mini-2024-07-18"
 gpu_memory_utilization=0.7
 use_gpt=True
-benchmark_directory="LongDocumentBench/ScientificPapers/Final_Dataset_w_citations_mentions_removed/Benchmark/EMNLP/Cited_Papers"
+benchmark_directory=""
 embedding_model="bge-m3"
 top_k=300
 max_top_k=300
 use_RRF_for_chunked_baseline=False
 hyperparameter_RRF=60
-corpus_directory="LongDocumentBench/ScientificPapers/Final_Dataset_w_citations_mentions_removed/Target_Corpus/target_corpus_citations_removed_True_mentions_removed_True/corpus.json"
+corpus_directory=""
 batch_size=1
 include_original_retrieval=False
 use_base_agent=False
@@ -46,9 +46,9 @@ selector_starting_idx=1
 
 
 if [ ${use_trained_model} == True ]; then
-    method_agent_model_path="/c2/swpark/ScientificPaperRetrieval_Train/Trained_Models/Jackson0018/Preference_Set_Llama-3.2-3B-Instruct_DPO_ref_as_gt_True_IterRet_individual_recall_True_top_k_30/meta-llama/Llama-3.2-3B-Instruct/method_agent/merged_model"
-    experiment_agent_model_path="/c2/swpark/ScientificPaperRetrieval_Train/Trained_Models/Jackson0018/Preference_Set_Llama-3.2-3B-Instruct_DPO_ref_as_gt_True_IterRet_individual_recall_True_top_k_30/meta-llama/Llama-3.2-3B-Instruct/experiment_agent/merged_model"
-    research_question_agent_model_path="/c2/swpark/ScientificPaperRetrieval_Train/Trained_Models/Jackson0018/Preference_Set_Llama-3.2-3B-Instruct_DPO_ref_as_gt_True_IterRet_individual_recall_True_top_k_30/meta-llama/Llama-3.2-3B-Instruct/research_question_agent/merged_model"
+    method_agent_model_path=""
+    experiment_agent_model_path=""
+    research_question_agent_model_path=""
 
 else
     method_agent_model_path=0
@@ -68,7 +68,7 @@ function run_job() {
     local job_num=$3
     local iteration=$4
     echo "Running inference_retrieval.py"
-    rm logs/logs_ai16/output_${job_num}.log 
+    rm logs/logs/output_${job_num}.log 
     python Inference/inference_retrieval.py \
     --iteration_num ${iteration}    \
     --batch_size ${batch_size} \
@@ -111,7 +111,7 @@ function run_job() {
     --total_iterative_retrieval_loop ${total_iterative_retrieval_loop}  \
     --starting_iteration_of_A2A_only ${starting_iteration_of_A2A_only} \
     --input_top_k_for_verifier ${input_top_k_for_verifier} \
-    --selector_starting_idx ${selector_starting_idx} > logs/logs_ai16/output_${job_num}.log 2>&1
+    --selector_starting_idx ${selector_starting_idx} > logs/logs/output_${job_num}.log 2>&1
 }
 
 
@@ -121,7 +121,7 @@ for i in {1..1}; do
     current_start=0  # Reset for each iteration
         
     total_indices=400
-    indices_per_thread=100
+    indices_per_thread=400
 
     job_count=0
     while [ "$current_start" -lt "$total_indices" ]; do

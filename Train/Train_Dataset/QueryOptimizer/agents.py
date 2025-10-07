@@ -1,17 +1,10 @@
 import json
-from typing import Any
 import yaml
-from langsmith.wrappers import wrap_openai
-from langsmith import traceable
-import openai
-from openai import OpenAI
 import os
 import sys
 from pydantic import BaseModel
 import re
-import logging
-import time
-from vllm import LLM, SamplingParams
+from vllm import SamplingParams
 import torch
 from transformers import AutoTokenizer
 
@@ -36,14 +29,14 @@ class BaseQueryOptimizerAgent:
         self.model_name = args.query_optimizer_model
         self.openai_models = ["gpt-4o-mini-2024-07-18", "gpt-4o-2024-08-06", "o3-mini-2025-01-31"]
         self.use_gpt = args.use_gpt
-        self.prompt_path = "Train_Dataset/QueryOptimizer/Prompts/base_query_optimizer_agent_prompt.yaml"
+        self.prompt_path = ""
         self.name = "BASE"
         self.repetition_penalty = args.repetition_penalty
         self.max_tokens = args.max_tokens
         self.temperature = args.temperature
         self.top_p = args.top_p
         self.vllm_model = vllm_model
-        self.models = ["meta-llama/Llama-3.2-3B-Instruct", "meta-llama/Llama-3.1-8B-Instruct"]
+        self.models = ["meta-llama/Llama-3.2-3B-Instruct", "Qwen/Qwen2.5-3B-Instruct"]
         self.rollout_number = args.rollout_number
         self.tokenizer = AutoTokenizer.from_pretrained(self.model_name)
         if self.use_gpt == True:

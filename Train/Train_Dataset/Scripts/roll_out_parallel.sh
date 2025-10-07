@@ -7,11 +7,11 @@ CONDA_ENV_NAME="paper_retrieval"
 query_optimizer_model="meta-llama/Llama-3.2-3B-Instruct"
 use_gpt=False
 deploy_llm=False
-train_set_directory="Train_Dataset/Final_Train_Set/Papers_and_Candidates"
+train_set_directory=""
 embedding_model="inf-retriever-v1-1.5b"
 top_k=300
 max_top_k=300
-corpus_directory="Train_Dataset/Final_Train_Set/Target_Corpus/corpus.json"
+corpus_directory=""
 batch_size=2
 include_original_retrieval=False
 use_method_agent=True
@@ -27,7 +27,7 @@ max_tokens=2000
 temperature=0.7
 top_p=0.8
 
-## absolute path to the parent directory of current directory
+## absolute path to the parent directory benchmark
 absolute_path=""
 
 
@@ -40,7 +40,7 @@ function run_job() {
     local end_idx=$2
     local job_num=$3
     echo "Running roll_out.py"
-    rm logs/ai_16/output_${job_num}.log 
+    rm logs/output_${job_num}.log 
     python Train_Dataset/Create_Preference_Dataset/roll_out.py \
     --batch_size ${batch_size} \
     --query_optimizer_model ${query_optimizer_model} \
@@ -65,7 +65,7 @@ function run_job() {
     --max_tokens ${max_tokens}   \
     --temperature ${temperature}   \
     --top_p ${top_p} \
-    --gpu_memory_utilization ${gpu_memory_utilization} > logs/ai_16/output_${job_num}.log 2>&1
+    --gpu_memory_utilization ${gpu_memory_utilization} > logs/output_${job_num}.log 2>&1
 }
 
 total_indices=15665

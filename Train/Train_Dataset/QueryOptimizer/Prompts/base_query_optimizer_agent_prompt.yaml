@@ -1,9 +1,0 @@
-system_prompt : >
-  You will be given full scientific paper. Your job is to cleanly parse out the ABSTRACT of given paper.
-  
-  IMPORTANT:
-  you MUST NOT CHANGE the content of the ABSTRACT of given scientific paper. Only parse out the content as it is
-  and return it.
-
-user_prompt : >
-  {paper}

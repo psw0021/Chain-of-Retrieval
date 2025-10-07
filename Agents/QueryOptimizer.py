@@ -11,7 +11,7 @@ from vllm.sampling_params import GuidedDecodingParams
 import torch
 from transformers import AutoTokenizer
 import ast
-from typing import Tuple, Any
+from typing import Tuple
 import logging
 
 current_dir = os.path.dirname(os.path.abspath(__file__))
@@ -34,7 +34,7 @@ class BaseQueryOptimizerAgent:
         self.args = args
         self.model_name = args.query_optimizer_model
         self.use_base_agent = args.use_base_agent
-        self.openai_models = ["gpt-4o-mini-2024-07-18", "gpt-4o-2024-11-20", "o3-mini-2025-01-31", "o4-mini-2025-04-16", "gpt-5-nano-2025-08-07", "gpt-5-2025-08-07", "gpt-4.1-2025-04-14", "gpt-4.1-mini-2025-04-14"]
+        self.openai_models = ["gpt-4o-mini-2024-07-18", "gpt-4o-2024-11-20", "gpt-4.1-2025-04-14"]
         self.use_gpt = args.use_gpt
         self.prompt_path = "Agents/Prompts/ScientificPapers/QueryOptimizer/base_query_optimizer_agent_prompt.yaml"
         self.coverage_critique_prompt_path = ""
@@ -44,7 +44,7 @@ class BaseQueryOptimizerAgent:
             self.vllm_model = vllm_model_dict["EXPERIMENT"]["agent"]
             self.vllm_model_device = vllm_model_dict["RESEARCH_QUESTION"]["device"]
 
-        self.models = ["meta-llama/Llama-3.2-3B-Instruct", "meta-llama/Llama-3.1-8B-Instruct", "Qwen/Qwen2.5-3B-Instruct"]
+        self.models = ["meta-llama/Llama-3.2-3B-Instruct", "Qwen/Qwen2.5-3B-Instruct"]
         self.multi_agent = args.multi_agent
         self.use_trained_model = args.use_trained_model
         self.port_number = None
@@ -95,7 +95,7 @@ class BaseQueryOptimizerAgent:
         
         client = OpenAI()
         
-        if self.model_name != "o3-mini-2025-01-31" and self.model_name != "o4-mini-2025-04-16" and self.model_name != "gpt-5-nano-2025-08-07" and self.model_name != "gpt-5-2025-08-07" and self.model_name != "gpt-4.1-2025-04-14" and self.model_name != "gpt-4.1-mini-2025-04-14":
+        if self.model_name != "gpt-4.1-2025-04-14":
             response = client.chat.completions.create(
                     model=self.model_name,
                     messages=messages,
@@ -193,7 +193,7 @@ class BaseQueryOptimizerAgent:
         
         client = OpenAI()
         
-        if self.model_name != "o3-mini-2025-01-31":
+        if self.model_name != "gpt-4.1-2025-04-14":
             response = client.beta.chat.completions.parse(
                     model=self.model_name,
                     messages=messages,

@@ -1,11 +1,11 @@
 #!/bin/bash
 use_full_paper_as_query=False
-benchmark_directory="LongDocumentBench/ScientificPapers/Final_Dataset_w_citations_mentions_removed/Benchmark/EMNLP/Cited_Papers"
+benchmark_directory=""
 embedding_model="SciMult-MoE"
 MoE_task='multi-hop-retrieval'
 top_k=300
 max_top_k=300
-corpus_directory="LongDocumentBench/ScientificPapers/Final_Dataset_w_citations_mentions_removed/Target_Corpus/target_corpus_citations_removed_True_mentions_removed_True/corpus.json"
+corpus_directory=""
 batch_size=4
 use_multi_source=False
 use_chunked=False

@@ -56,8 +56,6 @@ def evaluate_retrieval(retrieved_docs, relevant_docs, k, max_k):
     ndcg100 = ndcg_at_k(retrieved_docs, relevant_docs, 100)
     
     
-    #f1 = f1_score(precision, recall)
-    #mean_average_precision = Mean_Average_Precision(retrieved_docs, relevant_docs, k, max_k)
     return {
         "Recall@300": recall300,
         "nDCG@300": ndcg300,

@@ -2,32 +2,24 @@ import torch
 import faiss
 import os
 import sys
-from collections import namedtuple
 import numpy as np
 import torch
 from torch import nn as nn
-from transformers import DPRContextEncoder, DPRContextEncoderTokenizer, DPRQuestionEncoder, DPRQuestionEncoderTokenizer
-from transformers import DPRContextEncoder, AutoTokenizer,DPRContextEncoderTokenizer, \
-DPRQuestionEncoder, DPRQuestionEncoderTokenizer, AutoModel, AutoConfig
-from adapters import AutoAdapterModel
+from transformers import AutoModel
 from sentence_transformers import SentenceTransformer
 import json
 import torch
 from torch import nn as nn
-from pathlib import Path
 import logging
-from openai import OpenAI
 import tiktoken
 import re
-from vllm import LLM, SamplingParams
+from vllm import LLM
 
 current_dir = os.path.dirname(os.path.abspath(__file__))
 root_dir = os.path.dirname(current_dir)
 # Add the root directory to Python's module search path
 sys.path.append(root_dir)
-from Utils.utils import split_paragraph, reformat_to_string
 from QueryOptimizer.agents import QueryOptimizer
-from Retrieval.metrics import evaluate_retrieval, average_evaluation_metrics
 
 if not torch.cuda.is_available():
     raise RuntimeError("CUDA is not available. Please check your GPU setup.")
@@ -83,12 +75,14 @@ class Retriever:
         self.research_question_index = None
         self.experiment_index = None
         self.chunked_index = None
+
         
         num_devices = torch.cuda.device_count()
         device_list = []
         for device_number in range(num_devices):
             device_list.append(f"cuda:{device_number}")
         
+
         if args.deploy_llm == True:
             if args.query_optimizer_model != "Qwen/Qwen2.5-3B-Instruct":
                 self.vllm_model = LLM(model=args.query_optimizer_model, tensor_parallel_size=1, max_model_len=60000, gpu_memory_utilization=args.gpu_memory_utilization, dtype="half", device=device_list[0])
@@ -99,8 +93,10 @@ class Retriever:
             self.vllm_model = {}
             
         self.device = device_list[-1]
-
         self.QueryOptimizer = QueryOptimizer(args, result_folder_path, self.vllm_model)
+
+        print(device_list[0])
+        print(self.device)
 
         with open(args.corpus_directory, "r") as json_file:
             self.corpus = json.load(json_file)
@@ -124,7 +120,7 @@ class Retriever:
             self.embedding_dimension = 1024
             
         elif self.embedding_model == "inf-retriever-v1-1.5b":
-            embedding_model = SentenceTransformer("infly/inf-retriever-v1-1.5b" , trust_remote_code=True)
+            embedding_model = SentenceTransformer("infly/inf-retriever-v1-1.5b" , trust_remote_code=True).to(self.device)
             embedding_model.tokenizer.model_max_length = 32768
 
             self.question_encoder = embedding_model

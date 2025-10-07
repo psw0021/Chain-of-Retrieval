@@ -4,7 +4,6 @@ import numpy as np
 import scipy.stats as stats
 import sys
 
-# Directory to save PDFs
 def traverse_folder(folder_path):
     """
     Traverse through the folder and retrieve file names.
@@ -132,7 +131,6 @@ ndcg_1000 = []
 
 
 total_test_sets = 0
-#for subdirectory in subdirectories:
 total_recall_1000 = 0
 total_recall_500 = 0
 total_recall_300 = 0

@@ -1,9 +1,4 @@
-# This source code is licensed under the MIT license found in the
-# LICENSE file in the root directory of this source tree.
-
-
 import os
-import pandas as pd
 
 from dataclasses import dataclass, field
 from typing import Optional, Dict
@@ -11,25 +6,21 @@ from typing import Optional, Dict
 import logging
 import torch
 
-import unsloth
 from unsloth import is_bfloat16_supported
 import transformers
 import argparse
 import json
 from transformers import (
-
     TrainingArguments,
-
 )
+
 from transformers import StoppingCriteria, TrainerCallback
 from datasets import load_dataset
 
 from transformers.trainer_utils import PREFIX_CHECKPOINT_DIR
-from trl import DPOTrainer, DPOConfig, ORPOConfig, ORPOTrainer
+from trl import DPOTrainer, DPOConfig
 
 from unsloth import FastLanguageModel, PatchDPOTrainer
-#PatchDPOTrainer()
-import deepspeed
 import wandb
 
 torch.backends.cuda.matmul.allow_tf32 = True
@@ -40,16 +31,11 @@ logger = logging.getLogger(__name__)
 IGNORE_INDEX = -100
 DEFAULT_PAD_TOKEN = "[PAD]"
 
-#deepspeed.init_distributed()
-
-#accelerator = Accelerator()
-#if not accelerator.is_main_process:
-    #os.environ["WANDB_MODE"] = "disabled"
     
 @dataclass
 class ModelArguments:
     model_name_or_path: Optional[str] = field(
-        default="meta-llama/Llama-3.2-3B-Instruct"
+        default=""
     )
     agent_name: str = field(
         default="method_agent"
@@ -110,7 +96,7 @@ class TrainingArguments(transformers.TrainingArguments):
     per_device_train_batch_size: int = field(default=1, metadata={"help": 'The training batch size per GPU. Increase for better speed.'})
     gradient_accumulation_steps: int = field(default=1, metadata={"help": 'How many gradients to accumulate before to perform an optimizer step'})
     max_steps: int = field(default=2000, metadata={"help": 'How many optimizer update steps to take'})
-    weight_decay: float = field(default=0.0, metadata={"help": 'The L2 weight decay rate of AdamW'}) # use lora dropout instead for regularization if needed
+    weight_decay: float = field(default=0.0, metadata={"help": 'The L2 weight decay rate of AdamW'}) 
     learning_rate: float = field(default=0.0002, metadata={"help": 'The learnign rate'})
     max_grad_norm: float = field(default=0.3, metadata={"help": 'Gradient clipping max norm. This is tuned and works well for all models tested.'})
     gradient_checkpointing: bool = field(default=True, metadata={"help": 'Use gradient checkpointing. You want to use this.'})
@@ -121,7 +107,7 @@ class TrainingArguments(transformers.TrainingArguments):
     save_steps: int = field(default=250, metadata={"help": 'How often to save a model'})
     save_total_limit: int = field(default=40, metadata={"help": 'How many checkpoints to save before the oldest is overwritten'})
     load_in_4bit: bool = field(default=False, metadata={"help": "choose to whether use quantized model"})
-    project_name: str = field(default="DPO Practice", metadata={"help": "Name of the project this training is going to be run"})
+    project_name: str = field(default="", metadata={"help": "Name of the project this training is going to be run"})
     max_length: Optional[int] = field(default=50000)
     max_prompt_length: int = field(default=40000)
     max_completion_length: int = field(default=5000)
@@ -153,7 +139,7 @@ class StoppingCriteriaSub(StoppingCriteria):
 
 class SafeWandbCallback(TrainerCallback):
     def __init__(self, project_name: str):
-        self.project_name = project_name  # Store the project name
+        self.project_name = project_name  
     
     def on_init_end(self, args, state, control, **kwargs):
         if wandb.run is None:
@@ -186,17 +172,17 @@ def train():
     
     model = FastLanguageModel.get_peft_model(
         model,
-        r = 64, # Choose any number > 0 ! Suggested 8, 16, 32, 64, 128
+        r = 64, 
         target_modules = ["q_proj", "k_proj", "v_proj", "o_proj",
                         "gate_proj", "up_proj", "down_proj",],
         lora_alpha = 64,
-        lora_dropout = 0, # Currently only supports dropout = 0
-        bias = "none",    # Currently only supports bias = "none"
-        # [NEW] "unsloth" uses 30% less VRAM, fits 2x larger batch sizes!
-        use_gradient_checkpointing = "unsloth", # True or "unsloth" for very long context
+        lora_dropout = 0, 
+        bias = "none",    
+        
+        use_gradient_checkpointing = "unsloth", 
         random_state = 3407,
-        use_rslora = False,  # We support rank stabilized LoRA
-        loftq_config = None, # And LoftQ
+        use_rslora = False,  
+        loftq_config = None, 
     )
 
     setattr(model, 'model_parallel', True)

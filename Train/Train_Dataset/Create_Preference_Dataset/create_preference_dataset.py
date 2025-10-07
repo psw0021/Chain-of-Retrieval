@@ -1,10 +1,8 @@
 import os
 import json
 import yaml
-from datasets import DatasetDict, load_dataset, Dataset
-from huggingface_hub import login
+from datasets import DatasetDict, Dataset
 import argparse
-import sys
 import random
 import re
 
@@ -220,7 +218,6 @@ def Rank_Queries(retrieved_results, other_agent_retrieved_results, original_retr
 
 
 def collect_other_agent_retrieved_result(agent1_retrieved_result, agent2_retrieved_result):
-    # combine experiment based agent, research question based agent results into one.
     agent1_query_list = list(agent1_retrieved_result.keys())
     agent2_query_list = list(agent2_retrieved_result.keys())
             
@@ -310,7 +307,7 @@ def format_paper_content(content):
 
 def main(args):
     ## Format our test set(benchmark input paper information)
-    final_benchmark_root_directory = f"{args.absolute_path}/LongDocumentRetrieval/LongDocumentBench/ScientificPapers/Final_Dataset_w_citations_mentions_removed/Benchmark"
+    final_benchmark_root_directory = f"{args.absolute_path}/LongDocumentBench/ScientificPapers/Final_Dataset_w_citations_mentions_removed/Benchmark"
     venues = ["ACL", "EMNLP", "ICLR", "NeurIPS"]
     relations = ["Cited_Papers", "Direct_References"]
     
@@ -336,7 +333,7 @@ def main(args):
                         benchmark_existing_dictionary[format_paper_content(query_title)] = True
     
     if args.dataset_for_iterative_retrieval == True:
-        final_corpus_directory = f"{args.absolute_path}/LongDocumentRetrieval/LongDocumentBench/ScientificPapers/Final_Dataset_w_citations_mentions_removed/Target_Corpus/target_corpus_citations_removed_True_mentions_removed_True/corpus.json"
+        final_corpus_directory = f"{args.absolute_path}/LongDocumentBench/ScientificPapers/Final_Dataset_w_citations_mentions_removed/Target_Corpus/target_corpus_citations_removed_True_mentions_removed_True/corpus.json"
         with open(final_corpus_directory, "r") as json_file:
             final_corpus = json.load(json_file)
 

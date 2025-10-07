@@ -8,9 +8,7 @@ root_dir = os.path.dirname(current_dir)
 # Add the root directory to Python's module search path
 sys.path.append(root_dir)
 from Utils.utils import *
-from Retrieval.metrics import evaluate_retrieval, average_evaluation_metrics
 from Retrieval.retriever import Retriever
-from QueryOptimizer.agents import QueryOptimizer
 import logging
 import re
 
@@ -34,7 +32,7 @@ def config():
     parser.add_argument("--use_method_agent", default=True, type=lambda x: x.lower() == "true")
     parser.add_argument("--use_experiment_agent", default=True, type=lambda x: x.lower() == "true")
     parser.add_argument("--use_research_question_agent", default=True, type=lambda x: x.lower() == "true")
-    parser.add_argument("--corpus_directory", default="Train_Dataset/Final_Dataset/Target_Corpus/corpus.json")
+    parser.add_argument("--corpus_directory", default="")
     parser.add_argument("--use_multi_source", default=False, type=lambda x: x.lower() == "true")
     parser.add_argument("--use_chunked", default=False, type=lambda x: x.lower() == "true")
     parser.add_argument("--batch_size", default=500, type=int)
@@ -44,7 +42,7 @@ def config():
     parser.add_argument("--max_tokens", default=2000, type=int)
     parser.add_argument("--temperature", default=1.0, type=float)
     parser.add_argument("--top_p", default=0.8, type=float)
-    parser.add_argument("--absolute_path", default="", help="Absoluete path to the parent directory of current directory")
+    parser.add_argument("--absolute_path", default="", help="Absoluete path to the parent directory of benchmark")
 
     args = parser.parse_args()
     
@@ -114,7 +112,7 @@ def format_paper_content(content):
 
 def filter_unnecessary_query(args, train_file_directories: list) -> list:    
     ## Format our test set(benchmark input paper information)
-    final_benchmark_root_directory = f"{args.absolute_path}/LongDocumentRetrieval/LongDocumentBench/ScientificPapers/Final_Dataset_w_citations_mentions_removed/Benchmark"
+    final_benchmark_root_directory = f"{args.absolute_path}/LongDocumentBench/ScientificPapers/Final_Dataset_w_citations_mentions_removed/Benchmark"
     venues = ["ACL", "EMNLP", "ICLR", "NeurIPS"]
     relations = ["Cited_Papers", "Direct_References"]
     
@@ -139,7 +137,7 @@ def filter_unnecessary_query(args, train_file_directories: list) -> list:
                     except KeyError:
                         benchmark_existing_dictionary[format_paper_content(query_title)] = True
     
-    final_corpus_directory = f"{args.absolute_path}/LongDocumentRetrieval/LongDocumentBench/ScientificPapers/Final_Dataset_w_citations_mentions_removed/Target_Corpus/target_corpus_citations_removed_True_mentions_removed_True/corpus.json"
+    final_corpus_directory = f"{args.absolute_path}/LongDocumentBench/ScientificPapers/Final_Dataset_w_citations_mentions_removed/Target_Corpus/target_corpus_citations_removed_True_mentions_removed_True/corpus.json"
     with open(final_corpus_directory, "r") as json_file:
         final_corpus = json.load(json_file)
 
@@ -180,7 +178,6 @@ def filter_unnecessary_query(args, train_file_directories: list) -> list:
 def filter_only_reference(train_file_directories: list) -> list:
     filtered_train_file_directories = []
     for file in train_file_directories:
-            #####################################
             with open(file, "r") as json_file:
                 evaluation_data = json.load(json_file)
             
@@ -234,8 +231,6 @@ def filter_only_reference(train_file_directories: list) -> list:
                     
             except:
                 pass
-                    #print(f"Number of Ground Truth Candidates for Reference Split is {len(correct_candidates)}")
-    #####################################
     
     return filtered_train_file_directories
     
@@ -287,8 +282,6 @@ def evaluate(args):
     retriever.initialize()
     retriever.evaluate(args, test_file_directory, result_folder_path)
 
-# Example usage
 if __name__ == "__main__":
-    # Abstract to compare
     args = config()
     evaluate(args)

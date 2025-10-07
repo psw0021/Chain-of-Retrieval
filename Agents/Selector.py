@@ -90,7 +90,7 @@ class Selector:
     
     def forward_for_multirounds(self, organized_retrieved_top_corpus_for_refinement: dict) -> dict:
         """
-        Forward Generation of Aspect-Aware Verifiers.
+        Forward Aspect-Aware Selectors.
         """
         def concatenate_aspect_specific_top_corpus(aspect_specific_top_corpus_for_selection):
             formatted_aspect_specific_top_corpus_for_selection = ""
