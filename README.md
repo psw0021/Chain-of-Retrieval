@@ -34,12 +34,12 @@ unzip Paper2PaperRetrieval.zip -d .
 ```
 
 ### Download our DPO-trained Query Optimizers
-** Llama-3.2-3B-Instruct + Jina-Embeddings-v2-Base-EN ** [LlamaJEmb]()
-** Llama-3.2-3B-Instruct + BGE-M3 ** [LlamaBGE](https://huggingface.co/Jackson0018/Llama-3.2-3B-Instruct_BGE)
-** Llama-3.2-3B-Instruct + Inf-Retriever-v1-1.5B ** [LlamaInfRet](https://huggingface.co/Jackson0018/Llama-3.2-3B-Instruct_INFV)
-** QWEN-2.5-3B-Instruct + Jina-Embeddings-v2-Base-EN ** [QWENJEmb]()
-** QWEN-2.5-3B-Instruct + BGE-M3 ** [QWENBGE](https://huggingface.co/Jackson0018/Qwen2.5-3B-Instruct_BGE)
-** QWEN-2.5-3B-Instruct + Inf-Retriever-v1-1.5B ** [QWENInfRet](https://huggingface.co/Jackson0018/Qwen2.5-3B-Instruct_INFV)
+** Llama-3.2-3B-Instruct + Jina-Embeddings-v2-Base-EN [Llama-3.2-3B-Instruct + Jina-Embeddings-v2-Base-EN ]() \\
+** Llama-3.2-3B-Instruct + BGE-M3 [Llama-3.2-3B-Instruct + BGE-M3](https://huggingface.co/Jackson0018/Llama-3.2-3B-Instruct_BGE) \\
+** Llama-3.2-3B-Instruct + Inf-Retriever-v1-1.5B ** [Llama-3.2-3B-Instruct + Inf-Retriever-v1-1.5B](https://huggingface.co/Jackson0018/Llama-3.2-3B-Instruct_INFV) \\
+** QWEN-2.5-3B-Instruct + Jina-Embeddings-v2-Base-EN ** [QWEN-2.5-3B-Instruct + Jina-Embeddings-v2-Base-EN]() \\
+** QWEN-2.5-3B-Instruct + BGE-M3 ** [QWEN-2.5-3B-Instruct + BGE-M3](https://huggingface.co/Jackson0018/Qwen2.5-3B-Instruct_BGE) \\
+** QWEN-2.5-3B-Instruct + Inf-Retriever-v1-1.5B ** [QWEN-2.5-3B-Instruct + Inf-Retriever-v1-1.5B](https://huggingface.co/Jackson0018/Qwen2.5-3B-Instruct_INFV) \\
 
 ```bash
 python download_query_optimizers.py
