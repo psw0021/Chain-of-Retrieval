@@ -27,19 +27,18 @@ conda env create -f environment.yml -n paper_retrieval
 conda activate paper_retrieval
 ```
 
-### Download Benchmark
+### 📊 Download Benchmark
 ```bash
 python download_benchmark.py
 unzip Paper2PaperRetrieval.zip -d .
 ```
 
-### 🧠 Download Our DPO-Trained Query Optimizers
-
+### 🤖 Download Query Optimizers
 We release several **DPO-trained query optimizer LLMs** fine-tuned for scientific document retrieval tasks using **Llama-3.2-3B-Instruct** and **Qwen-2.5-3B-Instruct** backbones.  
 Each model is trained with different embedding backends (e.g., Jina, BGE, Inf-Retriever).
 
 ---
-#### 🔹 Llama-3.2-3B-Instruct Series
+#### 🔹 🦙 Llama-3.2-3B-Instruct Series
 - **Llama-3.2-3B-Instruct + Jina-Embeddings-v2-Base-EN**  
   [🤗 Model Card]()  
 - **Llama-3.2-3B-Instruct + BGE-M3**  
@@ -48,7 +47,7 @@ Each model is trained with different embedding backends (e.g., Jina, BGE, Inf-Re
   [🤗 Model Card](https://huggingface.co/Jackson0018/Llama-3.2-3B-Instruct_INFV)
 
 ---
-#### 🔹 Qwen-2.5-3B-Instruct Series
+#### 🔹 🐉 Qwen-2.5-3B-Instruct Series
 - **Qwen-2.5-3B-Instruct + Jina-Embeddings-v2-Base-EN**  
   [🤗 Model Card]()  
 - **Qwen-2.5-3B-Instruct + BGE-M3**  
@@ -89,6 +88,9 @@ bash Scripts/inference_QoA_parallel_patents.sh
 ```
 
 ### How to reproduce results using SciMult
+- To reproduce retrieval performance using SciMult embedding model, you must create separate conda environment following the instructions provided in the below repository
+- **SciMult Repository** [SciMult](https://github.com/yuzhimanhua/SciMult)
+
 ```bash
 bash Scripts/inference_QoA_parallel_ai_SciMult.sh
 ```
