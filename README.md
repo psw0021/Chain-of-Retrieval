@@ -89,7 +89,7 @@ bash Scripts/inference_QoA_parallel_patents.sh
 
 ### How to reproduce results using SciMult
 - To reproduce retrieval performance using SciMult embedding model, you must create separate conda environment following the instructions provided in the below repository
-- **SciMult Repository** [SciMult](https://github.com/yuzhimanhua/SciMult)
+- **SciMult Repository** [https://github.com/yuzhimanhua/SciMult](https://github.com/yuzhimanhua/SciMult)
 
 ```bash
 bash Scripts/inference_QoA_parallel_ai_SciMult.sh
