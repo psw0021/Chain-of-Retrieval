@@ -11,6 +11,7 @@ multi_agent=True
 query_optimizer_model="gpt-4o-mini-2024-07-18"
 gpu_memory_utilization=0.7
 use_gpt=True
+## Set the benchmark directory for SciFullBench, as shown below
 benchmark_directory=""
 embedding_model="bge-m3"
 top_k=300
@@ -46,6 +47,7 @@ selector_starting_idx=1
 
 
 if [ ${use_trained_model} == True ]; then
+    ## set the directory of trained agent models as shown below
     method_agent_model_path=""
     experiment_agent_model_path=""
     research_question_agent_model_path=""

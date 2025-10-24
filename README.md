@@ -29,6 +29,7 @@ conda activate paper_retrieval
 
 ### 📊 Download Benchmark
 ```bash
+## Download benchmark from the huggingface repository and unzip to current directory
 python download_benchmark.py
 unzip Paper2PaperRetrieval.zip -d .
 ```
@@ -54,8 +55,10 @@ Each model is trained with different embedding backends (e.g., Jina, BGE, Inf-Re
   [🤗 Model Card](https://huggingface.co/Jackson0018/Qwen2.5-3B-Instruct_BGE)
 - **Qwen-2.5-3B-Instruct + Inf-Retriever-v1-1.5B**  
   [🤗 Model Card](https://huggingface.co/Jackson0018/Qwen2.5-3B-Instruct_INFV)
+---
 
 ```bash
+## download uploaded query optimizers from the huggingface repository
 python download_query_optimizers.py
 ```
 
@@ -63,6 +66,7 @@ python download_query_optimizers.py
 - When using trained Query optimizers, use SciFullBench to test its performance. 
 
 ```bash
+## To evaluate the performance of DPO-trained Llama Query Optimizers, deploy each aspect-aware query optimizer agents separately using VLLM.
 bash Scripts/deploy_vllm_method_agent.sh
 bash Scripts/deploy_vllm_experiment_agent.sh
 bash Scripts/deploy_vllm_research_question_agent.sh
@@ -76,23 +80,27 @@ bash Scripts/inference_QoA_parallel_ai.sh
 - When using trained Query optimizers, use SciFullBench to test its performance. 
 
 ```bash
+## To evaluate the performance of DPO-trained QWEN Query Optimizers, deploy each aspect-aware query optimizer agent separately using VLLM.
 bash Scripts/deploy_vllm_method_agent_QWEN.sh
 bash Scripts/deploy_vllm_experiment_agent_QWEN.sh
 bash Scripts/deploy_vllm_research_question_agent_QWEN.sh
 ```
 
 ```bash 
+## To
 bash Scripts/inference_QoA_parallel_ai.sh
 ```
 
 ### Run Evaluation using untrained Query Optimizers on SciFullBench
 ```bash
+## Optional, if using GPT-based Query Optimizers
+export OPENAI_API_KEY="<YOUR OPENAI API KEY>"
 bash Scripts/inference_QoA_parallel_ai.sh
 ```
 
 ### Run Evaluation using untrained Query Optimizers for PatentFullBench
 ```bash
-export OPENAI_API_KEY="{Your OPENAI API KEY}"
+export OPENAI_API_KEY="<YOUR OPENAI API KEY>"
 bash Scripts/inference_QoA_parallel_patents.sh
 ```
 

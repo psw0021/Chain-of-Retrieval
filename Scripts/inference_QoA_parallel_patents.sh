@@ -11,6 +11,7 @@ multi_agent=False
 query_optimizer_model=""
 gpu_memory_utilization=0.7
 use_gpt=True
+## Set the benchmark directory for PatentFullBench, as shown below
 benchmark_directory=""
 embedding_model="pat_specter"
 top_k=300

@@ -1,10 +1,12 @@
 #!/bin/bash
 use_full_paper_as_query=False
+## Set the benchmark directory for SciFullBench, as shown below
 benchmark_directory=""
 embedding_model="SciMult-MoE"
 MoE_task='multi-hop-retrieval'
 top_k=300
 max_top_k=300
+## Set the corpus directory for SciFullBench, as shown below
 corpus_directory=""
 batch_size=4
 use_multi_source=False
