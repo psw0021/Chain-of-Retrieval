@@ -1,4 +1,4 @@
-# 🔗 Chain-of-Retrieval: Aspect-Guided Multi-Agent Retrieval Framework
+# 🔗 Chain of Retrieval: Multi-Aspect Iterative Search Expansion and Post-Order Search Aggregation for Full Paper Retrieval
 
 > *Multi-aspect-guided iterative retrieval framework using full context of scientific papers*
 
