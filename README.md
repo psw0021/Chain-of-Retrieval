@@ -41,7 +41,7 @@ Each model is trained with different embedding backends (e.g., Jina, BGE, Inf-Re
 ---
 #### 🦙 Llama-3.2-3B-Instruct Series
 - **Llama-3.2-3B-Instruct + Jina-Embeddings-v2-Base-EN**  
-  [🤗 Model Card]()  
+  [🤗 Model Card](https://huggingface.co/Jackson0018/Llama-3.2-3B-Instruct_JEmb)  
 - **Llama-3.2-3B-Instruct + BGE-M3**  
   [🤗 Model Card](https://huggingface.co/Jackson0018/Llama-3.2-3B-Instruct_BGE)
 - **Llama-3.2-3B-Instruct + Inf-Retriever-v1-1.5B**  
@@ -50,7 +50,7 @@ Each model is trained with different embedding backends (e.g., Jina, BGE, Inf-Re
 ---
 #### 🐉 Qwen-2.5-3B-Instruct Series
 - **Qwen-2.5-3B-Instruct + Jina-Embeddings-v2-Base-EN**  
-  [🤗 Model Card]()  
+  [🤗 Model Card](https://huggingface.co/Jackson0018/Qwen2.5-3B-Instruct_JEmb)  
 - **Qwen-2.5-3B-Instruct + BGE-M3**  
   [🤗 Model Card](https://huggingface.co/Jackson0018/Qwen2.5-3B-Instruct_BGE)
 - **Qwen-2.5-3B-Instruct + Inf-Retriever-v1-1.5B**  
