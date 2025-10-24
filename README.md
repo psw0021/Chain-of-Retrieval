@@ -64,8 +64,10 @@ python download_query_optimizers.py
 bash Scripts/deploy_vllm_method_agent.sh
 bash Scripts/deploy_vllm_experiment_agent.sh
 bash Scripts/deploy_vllm_research_question_agent.sh
+```
 
-bash Scripts/inference_QoA_parallel_ai.sh
+```bash 
+Scripts/inference_QoA_parallel_ai.sh
 ```
 
 ### Run Evaluation using QWEN-based DPO-trained Query Optimizers (only for SciFullBench)
@@ -73,8 +75,10 @@ bash Scripts/inference_QoA_parallel_ai.sh
 bash Scripts/deploy_vllm_method_agent_QWEN.sh
 bash Scripts/deploy_vllm_experiment_agent_QWEN.sh
 bash Scripts/deploy_vllm_research_question_agent_QWEN.sh
+```
 
-bash Scripts/inference_QoA_parallel_ai.sh
+```bash 
+Scripts/inference_QoA_parallel_ai.sh
 ```
 
 ### Run Evaluation using untrained Query Optimizers on SciFullBench
