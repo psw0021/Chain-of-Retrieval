@@ -1,0 +1,11 @@
+from huggingface_hub import snapshot_download
+
+## choose repo id from the provided models on Hugging Face and set rep_id in below code
+## chooose the path to store the downloaded models inside local_dir
+
+snapshot_download(
+    repo_id="",  
+    repo_type="model",                 
+    local_dir="",              
+    local_dir_use_symlinks=False,      
+)
