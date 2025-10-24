@@ -3,7 +3,7 @@
 > *Multi-aspect-guided iterative retrieval framework using full context of scientific papers*
 
 <p align="center">
-  <img src="Assets/framework.png" width="650">
+  <img src="Assets/framework.png" width="900">
 </p>
 
 ---
