@@ -3,7 +3,7 @@
 > *Multi-aspect-guided iterative retrieval framework using full context of scientific papers*
 
 <p align="center">
-  <img src="Assets/framework.png" width="900">
+  <img src="Assets/framework.png" width="850">
 </p>
 
 ---
@@ -38,7 +38,7 @@ We release several **DPO-trained query optimizer LLMs** fine-tuned for scientifi
 Each model is trained with different embedding backends (e.g., Jina, BGE, Inf-Retriever).
 
 ---
-#### 🔹 🦙 Llama-3.2-3B-Instruct Series
+#### 🦙 Llama-3.2-3B-Instruct Series
 - **Llama-3.2-3B-Instruct + Jina-Embeddings-v2-Base-EN**  
   [🤗 Model Card]()  
 - **Llama-3.2-3B-Instruct + BGE-M3**  
@@ -47,7 +47,7 @@ Each model is trained with different embedding backends (e.g., Jina, BGE, Inf-Re
   [🤗 Model Card](https://huggingface.co/Jackson0018/Llama-3.2-3B-Instruct_INFV)
 
 ---
-#### 🔹 🐉 Qwen-2.5-3B-Instruct Series
+#### 🐉 Qwen-2.5-3B-Instruct Series
 - **Qwen-2.5-3B-Instruct + Jina-Embeddings-v2-Base-EN**  
   [🤗 Model Card]()  
 - **Qwen-2.5-3B-Instruct + BGE-M3**  
@@ -59,7 +59,9 @@ Each model is trained with different embedding backends (e.g., Jina, BGE, Inf-Re
 python download_query_optimizers.py
 ```
 
-### Run Evaluation using Llama-based DPO-trained Query Optimizers (only for SciFullBench)
+### Run Evaluation using Llama-based DPO-trained Query Optimizers
+- When using trained Query optimizers, use SciFullBench to test its performance. 
+
 ```bash
 bash Scripts/deploy_vllm_method_agent.sh
 bash Scripts/deploy_vllm_experiment_agent.sh
@@ -67,10 +69,12 @@ bash Scripts/deploy_vllm_research_question_agent.sh
 ```
 
 ```bash 
-Scripts/inference_QoA_parallel_ai.sh
+bash Scripts/inference_QoA_parallel_ai.sh
 ```
 
-### Run Evaluation using QWEN-based DPO-trained Query Optimizers (only for SciFullBench)
+### Run Evaluation using QWEN-based DPO-trained Query Optimizers
+- When using trained Query optimizers, use SciFullBench to test its performance. 
+
 ```bash
 bash Scripts/deploy_vllm_method_agent_QWEN.sh
 bash Scripts/deploy_vllm_experiment_agent_QWEN.sh
@@ -78,7 +82,7 @@ bash Scripts/deploy_vllm_research_question_agent_QWEN.sh
 ```
 
 ```bash 
-Scripts/inference_QoA_parallel_ai.sh
+bash Scripts/inference_QoA_parallel_ai.sh
 ```
 
 ### Run Evaluation using untrained Query Optimizers on SciFullBench
@@ -88,6 +92,7 @@ bash Scripts/inference_QoA_parallel_ai.sh
 
 ### Run Evaluation using untrained Query Optimizers for PatentFullBench
 ```bash
+export OPENAI_API_KEY="{Your OPENAI API KEY}"
 bash Scripts/inference_QoA_parallel_patents.sh
 ```
 
