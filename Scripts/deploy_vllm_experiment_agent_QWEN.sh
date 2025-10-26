@@ -1,5 +1,5 @@
 #!/bin/bash
-export CUDA_VISIBLE_DEVICES=5
+export CUDA_VISIBLE_DEVICES=2
 
 ## write experiment agent model path here(trained with QWEN-2.5-3B-Instruct model)
 experiment_agent_model_path=""

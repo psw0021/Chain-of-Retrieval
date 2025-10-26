@@ -230,7 +230,7 @@ class RetrieverPatents:
                 
                 if self.use_chunked == False and self.use_full_paper_as_corpus == True:
                     full_paper_directory = paper["full_paper_directory"]
-                    full_paper_root = "LongDocumentBench/Patents"
+                    full_paper_root = "Paper2PaperRetrievalBench/PatentFullBench"
                     full_paper_directory = os.path.join(full_paper_root, full_paper_directory)
                     with open(full_paper_directory, "r") as file:
                         full_paper_content = file.read()
@@ -244,7 +244,7 @@ class RetrieverPatents:
                 elif self.use_chunked == True and self.use_full_paper_as_corpus == False:     
                     chunked_sections = paper[f"chunked_sections_{self.chunk_unit}"]
                     full_paper_directory = paper["full_paper_directory"]
-                    full_paper_root = "LongDocumentBench/Patents"
+                    full_paper_root = "Paper2PaperRetrievalBench/PatentFullBench"
                     full_paper_directory = os.path.join(full_paper_root, full_paper_directory)
                     with open(full_paper_directory, "r") as file:
                         full_paper_content = file.read()
@@ -267,7 +267,7 @@ class RetrieverPatents:
                 paper_abstract = paper["abstract"]
                 
                 full_paper_directory = paper["full_paper_directory"]
-                full_paper_root = "LongDocumentBench/Patents"
+                full_paper_root = "Paper2PaperRetrievalBench/PatentFullBench"
                 full_paper_directory = os.path.join(full_paper_root, full_paper_directory)
                 with open(full_paper_directory, "r") as file:
                     full_paper_content = file.read()
@@ -290,7 +290,7 @@ class RetrieverPatents:
                 paper_abstract = paper["abstract"]
                 
                 full_paper_directory = paper["full_paper_directory"]
-                full_paper_root = "LongDocumentBench/Patents"
+                full_paper_root = "Paper2PaperRetrievalBench/PatentFullBench"
                 full_paper_directory = os.path.join(full_paper_root, full_paper_directory)
                 with open(full_paper_directory, "r") as file:
                     full_paper_content = file.read()
@@ -314,7 +314,7 @@ class RetrieverPatents:
                 paper_abstract = paper['abstract']
                 
                 full_paper_directory = paper["full_paper_directory"]
-                full_paper_root = "LongDocumentBench/Patents"
+                full_paper_root = "Paper2PaperRetrievalBench/PatentFullBench"
                 
                 full_paper_directory = os.path.join(full_paper_root, full_paper_directory)
                 with open(full_paper_directory, "r") as file:

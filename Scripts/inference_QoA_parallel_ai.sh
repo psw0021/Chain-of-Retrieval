@@ -8,30 +8,30 @@ CONDA_ENV_NAME="paper_retrieval"
 use_query_optimizer=True
 use_full_paper_as_query=False
 multi_agent=True
-query_optimizer_model="gpt-4o-mini-2024-07-18"
+query_optimizer_model="meta-llama/Llama-3.2-3B-Instruct"
 gpu_memory_utilization=0.7
-use_gpt=True
+use_gpt=False
 ## Set the benchmark directory for SciFullBench, as shown below
-benchmark_directory=""
-embedding_model="bge-m3"
+benchmark_directory="Paper2PaperRetrievalBench/SciFullBench/Final_Dataset_w_citations_mentions_removed/Benchmark/NeurIPS/Cited_Papers"
+embedding_model="inf-retriever-v1-1.5b"
 top_k=300
 max_top_k=300
 use_RRF_for_chunked_baseline=False
 hyperparameter_RRF=60
-corpus_directory=""
+corpus_directory="Paper2PaperRetrievalBench/SciFullBench/Final_Dataset_w_citations_mentions_removed/Target_Corpus/target_corpus_citations_removed_True_mentions_removed_True/corpus.json"
 batch_size=1
-include_original_retrieval=False
+include_original_retrieval=True
 use_base_agent=False
 use_method_agent=True
 use_experiment_agent=True
 use_research_question_agent=True
-use_multi_source=False
+use_multi_source=True
 use_chunked=True
 chunk_unit=3000
 use_full_paper_as_corpus=False
 embedding_fusion=False
 embedding_fuse_method="maximum_similarity"
-use_trained_model=False
+use_trained_model=True
 remove_citations=True 
 remove_mentions=True
 
@@ -48,9 +48,9 @@ selector_starting_idx=1
 
 if [ ${use_trained_model} == True ]; then
     ## set the directory of trained agent models as shown below
-    method_agent_model_path=""
-    experiment_agent_model_path=""
-    research_question_agent_model_path=""
+    method_agent_model_path="/c2/swpark/Process_Code_for_Submission/Chain-of-Retrieval/Models/Preference_Set_Llama-3.2-3B-Instruct_INFV_ref_as_gt_True_IterRet_individual_recall_True_top_k_30/meta-llama/Llama-3.2-3B-Instruct/method_agent/merged_model"
+    experiment_agent_model_path="/c2/swpark/Process_Code_for_Submission/Chain-of-Retrieval/Models/Preference_Set_Llama-3.2-3B-Instruct_INFV_ref_as_gt_True_IterRet_individual_recall_True_top_k_30/meta-llama/Llama-3.2-3B-Instruct/experiment_agent/merged_model"
+    research_question_agent_model_path="/c2/swpark/Process_Code_for_Submission/Chain-of-Retrieval/Models/Preference_Set_Llama-3.2-3B-Instruct_INFV_ref_as_gt_True_IterRet_individual_recall_True_top_k_30/meta-llama/Llama-3.2-3B-Instruct/research_question_agent/merged_model"
 
 else
     method_agent_model_path=0
@@ -123,14 +123,14 @@ for i in {1..1}; do
     current_start=0  # Reset for each iteration
         
     total_indices=400
-    indices_per_thread=400
+    indices_per_thread=100
 
     job_count=0
     while [ "$current_start" -lt "$total_indices" ]; do
         if [ "$job_count" -eq 0 ]; then
-            export CUDA_VISIBLE_DEVICES=3
+            export CUDA_VISIBLE_DEVICES=2
         elif [ "$job_count" -eq 1 ]; then
-            export CUDA_VISIBLE_DEVICES=3
+            export CUDA_VISIBLE_DEVICES=2
         elif [ "$job_count" -eq 2 ]; then
             export CUDA_VISIBLE_DEVICES=3
         elif [ "$job_count" -eq 3 ]; then

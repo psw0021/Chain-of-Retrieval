@@ -25,18 +25,18 @@ git clone https://github.com/psw0021/Chain-of-Retrieval.git
 cd Chain-of-Retrieval
 conda env create -f environment.yml -n paper_retrieval
 conda activate paper_retrieval
+mkdir logs
 ```
 
 ### 📊 Download Benchmark
 ```bash
 ## Download benchmark from the huggingface repository and unzip to current directory
 python download_benchmark.py
-unzip Paper2PaperRetrieval.zip -d .
+unzip Paper2PaperRetrievalBench.zip -d .
 ```
 
 ### 🤖 Download Query Optimizers
-We release several **DPO-trained query optimizer LLMs** fine-tuned for scientific document retrieval tasks using **Llama-3.2-3B-Instruct** and **Qwen-2.5-3B-Instruct** backbones.  
-Each model is trained with different embedding backends (e.g., Jina, BGE, Inf-Retriever).
+We release several **DPO-trained query optimizer LLMs** fine-tuned for scientific document retrieval tasks using **Llama-3.2-3B-Instruct** and **Qwen-2.5-3B-Instruct** backbones. Each model is trained with different embedding backends (e.g., Jina-Embeddings-v2-Base-EN, BGE-M3, and Inf-Retriever-v1-1.5B).
 
 ---
 #### 🦙 Llama-3.2-3B-Instruct Series
@@ -59,6 +59,7 @@ Each model is trained with different embedding backends (e.g., Jina, BGE, Inf-Re
 
 ```bash
 ## download uploaded query optimizers from the huggingface repository
+mkdir Models
 python download_query_optimizers.py
 ```
 
@@ -66,13 +67,24 @@ python download_query_optimizers.py
 - When using trained Query optimizers, use SciFullBench to test its performance. 
 
 ```bash
-## To evaluate the performance of DPO-trained Llama Query Optimizers, deploy each aspect-aware query optimizer agents separately using VLLM.
+## To evaluate the performance of DPO-trained Llama Query Optimizers, deploy each aspect-aware query optimizer agents on separate GPUs using VLLM.
+conda activate paper_retrieval
 bash Scripts/deploy_vllm_method_agent.sh
+```
+
+```bash
+conda activate paper_retrieval
 bash Scripts/deploy_vllm_experiment_agent.sh
+```
+
+```bash
+conda activate paper_retrieval
 bash Scripts/deploy_vllm_research_question_agent.sh
 ```
 
-```bash 
+```bash
+## make logs directory for initial trial
+mkdir logs/logs
 bash Scripts/inference_QoA_parallel_ai.sh
 ```
 
@@ -81,13 +93,23 @@ bash Scripts/inference_QoA_parallel_ai.sh
 
 ```bash
 ## To evaluate the performance of DPO-trained QWEN Query Optimizers, deploy each aspect-aware query optimizer agent separately using VLLM.
+conda activate paper_retrieval
 bash Scripts/deploy_vllm_method_agent_QWEN.sh
+```
+
+```bash
+conda activate paper_retrieval
 bash Scripts/deploy_vllm_experiment_agent_QWEN.sh
+```
+
+```bash
+conda activate paper_retrieval
 bash Scripts/deploy_vllm_research_question_agent_QWEN.sh
 ```
 
-```bash 
-## To
+```bash
+## make logs directory for initial trial
+mkdir logs/logs
 bash Scripts/inference_QoA_parallel_ai.sh
 ```
 
@@ -95,12 +117,16 @@ bash Scripts/inference_QoA_parallel_ai.sh
 ```bash
 ## Optional, if using GPT-based Query Optimizers
 export OPENAI_API_KEY="<YOUR OPENAI API KEY>"
+## make logs directory for initial trial
+mkdir logs/logs
 bash Scripts/inference_QoA_parallel_ai.sh
 ```
 
 ### Run Evaluation using untrained Query Optimizers for PatentFullBench
 ```bash
 export OPENAI_API_KEY="<YOUR OPENAI API KEY>"
+## make logs directory for initial trial
+mkdir logs/logs_patents
 bash Scripts/inference_QoA_parallel_patents.sh
 ```
 
@@ -109,6 +135,7 @@ bash Scripts/inference_QoA_parallel_patents.sh
 - **SciMult Repository** [https://github.com/yuzhimanhua/SciMult](https://github.com/yuzhimanhua/SciMult)
 
 ```bash
+mkdir logs/logs_scimult
 bash Scripts/inference_QoA_parallel_ai_SciMult.sh
 ```
 

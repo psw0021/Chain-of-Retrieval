@@ -1,7 +1,7 @@
 #!/bin/bash
-export CUDA_VISIBLE_DEVICES=4
+export CUDA_VISIBLE_DEVICES=0
 
-## write method agent model path here(trained with QWEN-2.5-3B-Instruct model)
+## write absolute method agent model path here(trained with QWEN-2.5-3B-Instruct model)
 method_agent_model_path=""
 gpu_memory_utilization=1.0
 max_model_len=131072

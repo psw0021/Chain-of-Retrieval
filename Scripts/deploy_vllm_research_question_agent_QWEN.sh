@@ -1,5 +1,5 @@
 #!/bin/bash
-export CUDA_VISIBLE_DEVICES=6
+export CUDA_VISIBLE_DEVICES=3
 
 ## write research question agent model path here(trained with QWEN-2.5-3B-Instruct model)
 research_question_agent_model_path=""

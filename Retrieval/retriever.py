@@ -413,7 +413,7 @@ class Retriever:
                 
                 if self.use_chunked == False and self.use_full_paper_as_corpus == True:
                     arxiv_full_paper_directory = paper["full_paper_directory"]
-                    full_paper_root = "LongDocumentBench/ScientificPapers"
+                    full_paper_root = "Paper2PaperRetrievalBench/SciFullBench"
                     arxiv_full_paper_directory = os.path.join(full_paper_root, arxiv_full_paper_directory)
                     with open(arxiv_full_paper_directory, "r") as file:
                         full_paper_content = file.read()
@@ -437,7 +437,7 @@ class Retriever:
                 elif self.use_chunked == True and self.use_full_paper_as_corpus == False:     
                     chunked_sections = paper[f"chunked_sections_{self.chunk_unit}"]
                     arxiv_full_paper_directory = paper["full_paper_directory"]
-                    full_paper_root = "LongDocumentBench/ScientificPapers"
+                    full_paper_root = "Paper2PaperRetrievalBench/SciFullBench"
                     arxiv_full_paper_directory = os.path.join(full_paper_root, arxiv_full_paper_directory)
                     with open(arxiv_full_paper_directory, "r") as file:
                         full_paper_content = file.read()
@@ -469,7 +469,7 @@ class Retriever:
                 paper_abstract = paper["abstract"]
                 
                 arxiv_full_paper_directory = paper["full_paper_directory"]
-                full_paper_root = "LongDocumentBench/ScientificPapers"
+                full_paper_root = "Paper2PaperRetrievalBench/SciFullBench"
                 arxiv_full_paper_directory = os.path.join(full_paper_root, arxiv_full_paper_directory)
                 with open(arxiv_full_paper_directory, "r") as file:
                     full_paper_content = file.read()
@@ -492,7 +492,7 @@ class Retriever:
                 paper_abstract = paper["abstract"]
                 
                 arxiv_full_paper_directory = paper["full_paper_directory"]
-                full_paper_root = "LongDocumentBench/ScientificPapers"
+                full_paper_root = "Paper2PaperRetrievalBench/SciFullBench"
                 arxiv_full_paper_directory = os.path.join(full_paper_root, arxiv_full_paper_directory)
                 with open(arxiv_full_paper_directory, "r") as file:
                     full_paper_content = file.read()
@@ -524,7 +524,7 @@ class Retriever:
                 paper_title = paper["title"]
                 paper_abstract = paper['abstract']
                 arxiv_full_paper_directory = paper["full_paper_directory"]
-                full_paper_root = "LongDocumentBench/ScientificPapers"
+                full_paper_root = "Paper2PaperRetrievalBench/SciFullBench"
                 arxiv_full_paper_directory = os.path.join(full_paper_root, arxiv_full_paper_directory)
                 with open(arxiv_full_paper_directory, "r") as file:
                     full_paper_content = file.read()
