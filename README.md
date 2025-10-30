@@ -65,7 +65,7 @@ mkdir Models
 python download_query_optimizers.py
 ```
 
-### Run Evaluation using Llama-based DPO-trained Query Optimizers
+### 🪄 Run Evaluation using Llama-based DPO-trained Query Optimizers
 - When using trained Query optimizers, use SciFullBench to test its performance. 
 - To evaluate the performance of DPO-trained Llama Query Optimizers, deploy each aspect-aware query optimizer agents on separate GPUs using VLLM.
 
@@ -101,7 +101,7 @@ mkdir logs/logs
 bash Scripts/inference_QoA_parallel_ai.sh
 ```
 
-### Run Evaluation using QWEN-based DPO-trained Query Optimizers
+### 🪄 Run Evaluation using QWEN-based DPO-trained Query Optimizers
 - When using trained Query optimizers, use SciFullBench to test its performance. To evaluate the performance of DPO-trained QWEN Query Optimizers, deploy each aspect-aware query optimizer agent separately using VLLM.
 - To evaluate the performance of DPO-trained Llama Query Optimizers, deploy each aspect-aware query optimizer agents on separate GPUs using VLLM.
 
@@ -137,7 +137,7 @@ mkdir logs/logs
 bash Scripts/inference_QoA_parallel_ai.sh
 ```
 
-### Run Evaluation using untrained Query Optimizers on SciFullBench
+### 🪄 Run Evaluation using untrained Query Optimizers on SciFullBench
 ```bash
 ## Optional, if using GPT-based Query Optimizers
 export OPENAI_API_KEY="<YOUR OPENAI API KEY>"
@@ -146,7 +146,7 @@ mkdir logs/logs
 bash Scripts/inference_QoA_parallel_ai.sh
 ```
 
-### Run Evaluation using untrained Query Optimizers for PatentFullBench
+### 🪄 Run Evaluation using untrained Query Optimizers for PatentFullBench
 ```bash
 export OPENAI_API_KEY="<YOUR OPENAI API KEY>"
 ## make logs directory for initial trial
@@ -154,7 +154,7 @@ mkdir logs/logs_patents
 bash Scripts/inference_QoA_parallel_patents.sh
 ```
 
-### How to reproduce results using SciMult
+### 🪄 How to reproduce results using SciMult
 - To reproduce retrieval performance using SciMult embedding model, you must create separate conda environment following the instructions provided in the below repository
 - **SciMult Repository** [https://github.com/yuzhimanhua/SciMult](https://github.com/yuzhimanhua/SciMult)
 
