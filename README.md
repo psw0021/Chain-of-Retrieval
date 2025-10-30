@@ -38,24 +38,26 @@ unzip Paper2PaperRetrievalBench.zip -d .
 ### 🤖 Download Query Optimizers
 We release several **DPO-trained query optimizer LLMs** fine-tuned for scientific document retrieval tasks using **Llama-3.2-3B-Instruct** and **Qwen-2.5-3B-Instruct** backbones. Each model is trained with different embedding backends (e.g., Jina-Embeddings-v2-Base-EN, BGE-M3, and Inf-Retriever-v1-1.5B).
 
----  
+---
 ## 🦙 Llama-3.2-3B-Instruct Series
 
-| Model | Preference Set | 🤗 Model Card |
-|:------|:---------------|:--------------|
-| **Llama-3.2-3B-Instruct + Jina-Embeddings-v2-Base-EN** | [Jackson0018/Preference_Set_Llama-3.2-3B-Instruct_DPO_ref_as_gt_True_IterRet_individual_recall_True_top_k_30](https://huggingface.co/datasets/Jackson0018/Preference_Set_Llama-3.2-3B-Instruct_DPO_ref_as_gt_True_IterRet_individual_recall_True_top_k_30) | [Model Card](https://huggingface.co/Jackson0018/Llama-3.2-3B-Instruct_JEmb) |
-| **Llama-3.2-3B-Instruct + BGE-M3** | [Jackson0018/Preference_Set_Llama-3.2-3B-Instruct_BGE_ref_as_gt_True_IterRet_individual_recall_True_top_k_30](https://huggingface.co/datasets/Jackson0018/Preference_Set_Llama-3.2-3B-Instruct_BGE_ref_as_gt_True_IterRet_individual_recall_True_top_k_30) | [Model Card](https://huggingface.co/Jackson0018/Llama-3.2-3B-Instruct_BGE) |
-| **Llama-3.2-3B-Instruct + Inf-Retriever-v1-1.5B** | [Jackson0018/Preference_Set_Llama-3.2-3B-Instruct_INFV_ref_as_gt_True_IterRet_individual_recall_True_top_k_30](https://huggingface.co/datasets/Jackson0018/Preference_Set_Llama-3.2-3B-Instruct_INFV_ref_as_gt_True_IterRet_individual_recall_True_top_k_30) | [Model Card](https://huggingface.co/Jackson0018/Llama-3.2-3B-Instruct_INFV) |
+| Query Optimizer             | Embedding Model               | Preference Set                                                                                                                                                                                                                           | 🤗 Model Card                                                                                           |
+|:-----------------------------|:-------------------------------|:------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|:----------------------------------------------------------------------------------------------------------|
+| **Llama-3.2-3B-Instruct**    | **Jina-Embeddings-v2-Base-EN** | [link](https://huggingface.co/datasets/Jackson0018/Preference_Set_Llama-3.2-3B-Instruct_DPO_ref_as_gt_True_IterRet_individual_recall_True_top_k_30)                                                | [Model Card](https://huggingface.co/Jackson0018/Llama-3.2-3B-Instruct_JEmb)                              |
+| **Llama-3.2-3B-Instruct**    | **BGE-M3**                     | [link](https://huggingface.co/datasets/Jackson0018/Preference_Set_Llama-3.2-3B-Instruct_BGE_ref_as_gt_True_IterRet_individual_recall_True_top_k_30)                                                | [Model Card](https://huggingface.co/Jackson0018/Llama-3.2-3B-Instruct_BGE)                               |
+| **Llama-3.2-3B-Instruct**    | **Inf-Retriever-v1-1.5B**      | [link](https://huggingface.co/datasets/Jackson0018/Preference_Set_Llama-3.2-3B-Instruct_INFV_ref_as_gt_True_IterRet_individual_recall_True_top_k_30)                                               | [Model Card](https://huggingface.co/Jackson0018/Llama-3.2-3B-Instruct_INFV)                              |
 
 ---
+
 ## 🐉 Qwen-2.5-3B-Instruct Series
 
-| Model | Preference Set | 🤗 Model Card |
-|:------|:---------------|:--------------|
-| **Qwen-2.5-3B-Instruct + Jina-Embeddings-v2-Base-EN** | [Jackson0018/Preference_Set_Qwen2.5-3B-Instruct_JEmb_ref_as_gt_True_IterRet_individual_recall_True_top_k_30](https://huggingface.co/datasets/Jackson0018/Preference_Set_Qwen2.5-3B-Instruct_JEmb_ref_as_gt_True_IterRet_individual_recall_True_top_k_30) | [Model Card](https://huggingface.co/Jackson0018/Qwen2.5-3B-Instruct_JEmb) |
-| **Qwen-2.5-3B-Instruct + BGE-M3** | [Jackson0018/Preference_Set_Qwen2.5-3B-Instruct_BGE_ref_as_gt_True_IterRet_individual_recall_True_top_k_30](https://huggingface.co/datasets/Jackson0018/Preference_Set_Qwen2.5-3B-Instruct_BGE_ref_as_gt_True_IterRet_individual_recall_True_top_k_30) | [Model Card](https://huggingface.co/Jackson0018/Qwen2.5-3B-Instruct_BGE) |
-| **Qwen-2.5-3B-Instruct + Inf-Retriever-v1-1.5B** | [Jackson0018/Preference_Set_Qwen2.5-3B-Instruct_INFV_ref_as_gt_True_IterRet_individual_recall_True_top_k_30](https://huggingface.co/datasets/Jackson0018/Preference_Set_Qwen2.5-3B-Instruct_INFV_ref_as_gt_True_IterRet_individual_recall_True_top_k_30) | [Model Card](https://huggingface.co/Jackson0018/Qwen2.5-3B-Instruct_INFV) |
+| Query Optimizer             | Embedding Model               | Preference Set                                                                                                                                                                                                                           | 🤗 Model Card                                                                                           |
+|:-----------------------------|:-------------------------------|:------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|:----------------------------------------------------------------------------------------------------------|
+| **Qwen-2.5-3B-Instruct**     | **Jina-Embeddings-v2-Base-EN** | [link](https://huggingface.co/datasets/Jackson0018/Preference_Set_Qwen2.5-3B-Instruct_JEmb_ref_as_gt_True_IterRet_individual_recall_True_top_k_30)                                                 | [Model Card](https://huggingface.co/Jackson0018/Qwen2.5-3B-Instruct_JEmb)                               |
+| **Qwen-2.5-3B-Instruct**     | **BGE-M3**                     | [link](https://huggingface.co/datasets/Jackson0018/Preference_Set_Qwen2.5-3B-Instruct_BGE_ref_as_gt_True_IterRet_individual_recall_True_top_k_30)                                                 | [Model Card](https://huggingface.co/Jackson0018/Qwen2.5-3B-Instruct_BGE)                                |
+| **Qwen-2.5-3B-Instruct**     | **Inf-Retriever-v1-1.5B**      | [link](https://huggingface.co/datasets/Jackson0018/Preference_Set_Qwen2.5-3B-Instruct_INFV_ref_as_gt_True_IterRet_individual_recall_True_top_k_30)                                                | [Model Card](https://huggingface.co/Jackson0018/Qwen2.5-3B-Instruct_INFV)                               |
 ---
+
 
 ```bash
 ## download uploaded query optimizers from the huggingface repository
