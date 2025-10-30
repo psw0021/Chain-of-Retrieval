@@ -41,7 +41,7 @@ We release several **DPO-trained query optimizer LLMs** fine-tuned for scientifi
 ---
 #### 🦙 Llama-3.2-3B-Instruct Series
 
-| Query Optimizer             | Embedding Model               | 📦 Preference Set                                                                                                                                                                                                                           | 🤗 Model Card                                                                                           |
+| 🤖 Query Optimizer             | 🧠 Embedding Model               | 📦 Preference Set                                                                                                                                                                                                                           | 🤗 Model Card                                                                                           |
 |:-----------------------------|:-------------------------------|:------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|:----------------------------------------------------------------------------------------------------------|
 | **Llama-3.2-3B-Instruct**    | **Jina-Embeddings-v2-Base-EN** | [link](https://huggingface.co/datasets/Jackson0018/Preference_Set_Llama-3.2-3B-Instruct_DPO_ref_as_gt_True_IterRet_individual_recall_True_top_k_30)                                                | [Model Card](https://huggingface.co/Jackson0018/Llama-3.2-3B-Instruct_JEmb)                              |
 | **Llama-3.2-3B-Instruct**    | **BGE-M3**                     | [link](https://huggingface.co/datasets/Jackson0018/Preference_Set_Llama-3.2-3B-Instruct_BGE_ref_as_gt_True_IterRet_individual_recall_True_top_k_30)                                                | [Model Card](https://huggingface.co/Jackson0018/Llama-3.2-3B-Instruct_BGE)                               |
@@ -51,7 +51,7 @@ We release several **DPO-trained query optimizer LLMs** fine-tuned for scientifi
 
 #### 🐉 Qwen-2.5-3B-Instruct Series
 
-| Query Optimizer             | Embedding Model               | Preference Set                                                                                                                                                                                                                           | 🤗 Model Card                                                                                           |
+| 🤖 Query Optimizer             | 🧠 Embedding Model               | 📦 Preference Set                                                                                                                                                                                                                           | 🤗 Model Card                                                                                           |
 |:-----------------------------|:-------------------------------|:------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|:----------------------------------------------------------------------------------------------------------|
 | **Qwen-2.5-3B-Instruct**     | **Jina-Embeddings-v2-Base-EN** | [link](https://huggingface.co/datasets/Jackson0018/Preference_Set_Qwen2.5-3B-Instruct_JEmb_ref_as_gt_True_IterRet_individual_recall_True_top_k_30)                                                 | [Model Card](https://huggingface.co/Jackson0018/Qwen2.5-3B-Instruct_JEmb)                               |
 | **Qwen-2.5-3B-Instruct**     | **BGE-M3**                     | [link](https://huggingface.co/datasets/Jackson0018/Preference_Set_Qwen2.5-3B-Instruct_BGE_ref_as_gt_True_IterRet_individual_recall_True_top_k_30)                                                 | [Model Card](https://huggingface.co/Jackson0018/Qwen2.5-3B-Instruct_BGE)                                |
@@ -67,28 +67,31 @@ python download_query_optimizers.py
 
 ### Run Evaluation using Llama-based DPO-trained Query Optimizers
 - When using trained Query optimizers, use SciFullBench to test its performance. 
+- To evaluate the performance of DPO-trained Llama Query Optimizers, deploy each aspect-aware query optimizer agents on separate GPUs using VLLM.
 
 ```bash
-## To evaluate the performance of DPO-trained Llama Query Optimizers, deploy each aspect-aware query optimizer agents on separate GPUs using VLLM.
+## create separate session to deploy method agent(optional)
 tmux new -s deploy_vllm_method_agent
 conda activate paper_retrieval
 bash Scripts/deploy_vllm_method_agent.sh
 ```
 
 ```bash
+## create separate session to deploy experiment agent(optional)
 tmux new -s deploy_vllm_experiment_agent
 conda activate paper_retrieval
 bash Scripts/deploy_vllm_experiment_agent.sh
 ```
 
 ```bash
+## create separate session to deploy research question agent(optional)
 tmux new -s deploy_vllm_research_question_agent
 conda activate paper_retrieval
 bash Scripts/deploy_vllm_research_question_agent.sh
 ```
 
 ```bash
-## create background session for paper retrieval if not created
+## create separate session to run inference(optional)
 tmux new -s paper_retrieval
 ## activate paper retrieval background if not activated
 conda activate paper_retrieval
@@ -99,29 +102,32 @@ bash Scripts/inference_QoA_parallel_ai.sh
 ```
 
 ### Run Evaluation using QWEN-based DPO-trained Query Optimizers
-- When using trained Query optimizers, use SciFullBench to test its performance. 
+- When using trained Query optimizers, use SciFullBench to test its performance. To evaluate the performance of DPO-trained QWEN Query Optimizers, deploy each aspect-aware query optimizer agent separately using VLLM.
+- To evaluate the performance of DPO-trained Llama Query Optimizers, deploy each aspect-aware query optimizer agents on separate GPUs using VLLM.
 
 ```bash
-## To evaluate the performance of DPO-trained QWEN Query Optimizers, deploy each aspect-aware query optimizer agent separately using VLLM.
+## create separate session to deploy method agent(optional)
 tmux new -s deploy_vllm_method_agent_QWEN
 conda activate paper_retrieval
 bash Scripts/deploy_vllm_method_agent_QWEN.sh
 ```
 
 ```bash
+## create separate session to deploy experiment agent(optional)
 tmux new -s deploy_vllm_experiment_agent_QWEN
 conda activate paper_retrieval
 bash Scripts/deploy_vllm_experiment_agent_QWEN.sh
 ```
 
 ```bash
+## create separate session to deploy research question agent(optional)
 tmux new -s deploy_vllm_research_question_agent_QWEN
 conda activate paper_retrieval
 bash Scripts/deploy_vllm_research_question_agent_QWEN.sh
 ```
 
 ```bash
-## create background session for paper retrieval if not created
+## create separate session to run inference (optional)
 tmux new -s paper_retrieval
 ## activate paper retrieval background if not activated
 conda activate paper_retrieval
