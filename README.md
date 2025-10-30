@@ -39,7 +39,7 @@ unzip Paper2PaperRetrievalBench.zip -d .
 We release several **DPO-trained query optimizer LLMs** fine-tuned for scientific document retrieval tasks using **Llama-3.2-3B-Instruct** and **Qwen-2.5-3B-Instruct** backbones. Each model is trained with different embedding backends (e.g., Jina-Embeddings-v2-Base-EN, BGE-M3, and Inf-Retriever-v1-1.5B).
 
 ---
-## 🦙 Llama-3.2-3B-Instruct Series
+#### 🦙 Llama-3.2-3B-Instruct Series
 
 | Query Optimizer             | Embedding Model               | Preference Set                                                                                                                                                                                                                           | 🤗 Model Card                                                                                           |
 |:-----------------------------|:-------------------------------|:------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|:----------------------------------------------------------------------------------------------------------|
@@ -49,7 +49,7 @@ We release several **DPO-trained query optimizer LLMs** fine-tuned for scientifi
 
 ---
 
-## 🐉 Qwen-2.5-3B-Instruct Series
+#### 🐉 Qwen-2.5-3B-Instruct Series
 
 | Query Optimizer             | Embedding Model               | Preference Set                                                                                                                                                                                                                           | 🤗 Model Card                                                                                           |
 |:-----------------------------|:-------------------------------|:------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|:----------------------------------------------------------------------------------------------------------|
