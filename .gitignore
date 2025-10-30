@@ -4,3 +4,4 @@ Results/
 .cache/
 logs/
 nltk_data/
+.gitattributes
