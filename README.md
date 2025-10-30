@@ -163,3 +163,31 @@ mkdir logs/logs_scimult
 bash Scripts/inference_QoA_parallel_ai_SciMult.sh
 ```
 
+### 🪄 How to Manually Create Preference Set
+```bash
+cd Train
+conda activate paper_retrieval
+bash Train_Dataset/Scripts/roll_out_parallel.sh
+```
+
+```bash
+## Set model and embedding model configurations you used for rollout properly into the config arguments in Train_Dataset/Create_Preference_Dataset/create_preference_dataset.py file.
+python Train_Dataset/Create_Preference_Dataset/create_preference_dataset.py
+```
+
+### 🪄 How to Train Using Preference Set
+```bash
+## If currently not in Train subdirectory
+cd Train
+conda activate DPO_train
+
+## train DPO method agent
+bash Train/DPO_unsloth/DPO_train_method_agent.sh
+
+## train DPO experiment agent
+bash Train/Train/DPO_unsloth/DPO_train_experiment_agent.sh
+
+### train DPO research question agent
+bash Train/Train/DPO_unsloth/DPO_train_research_question_agent.sh
+```
+
