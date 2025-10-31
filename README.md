@@ -179,15 +179,16 @@ unzip Final_Train_Set.zip -d Train_Dataset/
 
 ```bash
 ## Download raw semantic scholar information for rollout from the huggingface repository and unzip.
-cd Train
+cd Train. ## If currently not in Train subdirectory. 
 python download_citation_info.py
-unzip Raw_Train_Dataset.zip -d Train_Dataset/
+unzip Raw_Train_Dataset.zip -d .
 ```
 
 #### Run Rollout to Create Self-Generated Preference Set 
 ```bash
 ## Fill out the script file according to your needs and run roll out script file.
 conda activate paper_retrieval
+mkdir logs ## If logs directory do not exist(optional).
 bash Train_Dataset/Scripts/roll_out_parallel.sh
 ```
 

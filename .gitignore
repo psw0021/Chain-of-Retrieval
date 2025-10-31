@@ -5,3 +5,16 @@ Results/
 logs/
 nltk_data/
 .gitattributes
+Train/.cache/
+Train/Raw_Train_Dataset.zip
+Train/Final_Train_Set.zip
+Train/Train_Dataset/Final_Train_Set
+Train/Raw_Train_Dataset
+Train/nltk_data
+Train/.cache
+Train/logs/
+Train/.gitattributes
+Train/Train_Dataset/Rollout_Results_Final
+Train/Train_Dataset/QueryOptimizer/__pycache__/
+Train/Train_Dataset/Utils/__pycache__/
+Train/Train_Dataset/Retrieval/__pycache__/

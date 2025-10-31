@@ -13,21 +13,21 @@ def config():
     
     parser.add_argument("--use_group_reward", default=False)
     parser.add_argument("--use_recall_as_reward", default=True)
-    parser.add_argument("--model", default="Qwen/Qwen2.5-3B-Instruct", choices=["meta-llama/Llama-3.2-3B-Instruct", "Qwen/Qwen2.5-3B-Instruct"])
+    parser.add_argument("--model", default="meta-llama/Llama-3.2-3B-Instruct", choices=["meta-llama/Llama-3.2-3B-Instruct", "Qwen/Qwen2.5-3B-Instruct"])
     parser.add_argument("--original_retrieval", default=False)
     parser.add_argument("--multi_source", default=False)
-    parser.add_argument("--retriever", default="inf-retriever-v1-1.5b", choices=["jina-embeddings-v2-base-en", "bge-m3", "inf-retriever-v1-1.5b"])
+    parser.add_argument("--retriever", default="jina-embeddings-v2-base-en", choices=["jina-embeddings-v2-base-en", "bge-m3", "inf-retriever-v1-1.5b"])
     parser.add_argument("--use_overlap_ratio_as_reward", default=False)
     parser.add_argument("--top_k", default=30)
     parser.add_argument("--weight_alpha", default=0.6, type=int)
     parser.add_argument("--overlap_threshold", default=0.35)
     parser.add_argument("--margin_threshold", default=0.03)
-    parser.add_argument("--huggingface_directory", default="")
+    parser.add_argument("--huggingface_directory", default="Jackson0018/Preference_Set", help="Custom Huggingface Directory to Upload the Dataset. Change Jackson0018 to your huggingface user name")
     parser.add_argument("--training_algorithm", default="DPO", choices=["DPO", "ORPO"])
     parser.add_argument("--use_reference_as_gt", default=True, type=bool)
     parser.add_argument("--dataset_for_iterative_retrieval", default=True, type=bool)
-    parser.add_argument("--upload_to_huggingface", default=True)
-    parser.add_argument("--absolute_path", default="", help="absolute path for parent directory of dataset")
+    parser.add_argument("--upload_to_huggingface", default=False, help="Whether to upload the created dataset to huggingface. Set True if you want to upload to huggingface.")
+    parser.add_argument("--absolute_path", default="/c2/swpark/Process_Code_for_Submission/Chain-of-Retrieval", help="Absolute path to the parent directory of Paper2PaperRetrievalBench(SciFullBench + PatentFullBench)")
 
     args = parser.parse_args()
     
@@ -307,7 +307,7 @@ def format_paper_content(content):
 
 def main(args):
     ## Format our test set(benchmark input paper information)
-    final_benchmark_root_directory = f"{args.absolute_path}/LongDocumentBench/ScientificPapers/Final_Dataset_w_citations_mentions_removed/Benchmark"
+    final_benchmark_root_directory = f"{args.absolute_path}/Paper2PaperRetrievalBench/SciFullBench/Final_Dataset_w_citations_mentions_removed/Benchmark"
     venues = ["ACL", "EMNLP", "ICLR", "NeurIPS"]
     relations = ["Cited_Papers", "Direct_References"]
     
@@ -333,7 +333,7 @@ def main(args):
                         benchmark_existing_dictionary[format_paper_content(query_title)] = True
     
     if args.dataset_for_iterative_retrieval == True:
-        final_corpus_directory = f"{args.absolute_path}/LongDocumentBench/ScientificPapers/Final_Dataset_w_citations_mentions_removed/Target_Corpus/target_corpus_citations_removed_True_mentions_removed_True/corpus.json"
+        final_corpus_directory = f"{args.absolute_path}/Paper2PaperRetrievalBench/SciFullBench/Final_Dataset_w_citations_mentions_removed/Target_Corpus/target_corpus_citations_removed_True_mentions_removed_True/corpus.json"
         with open(final_corpus_directory, "r") as json_file:
             final_corpus = json.load(json_file)
 

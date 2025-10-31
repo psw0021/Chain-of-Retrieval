@@ -6,12 +6,12 @@ CONDA_ENV_NAME="paper_retrieval"
 
 query_optimizer_model="meta-llama/Llama-3.2-3B-Instruct"
 use_gpt=False
-deploy_llm=False
-train_set_directory=""
-embedding_model="inf-retriever-v1-1.5b"
+deploy_llm=True
+train_set_directory="Train_Dataset/Final_Train_Set/Papers_and_Candidates"
+embedding_model="jina-embeddings-v2-base-en"
 top_k=300
 max_top_k=300
-corpus_directory=""
+corpus_directory="Train_Dataset/Final_Train_Set/Target_Corpus/corpus.json"
 batch_size=2
 include_original_retrieval=False
 use_method_agent=True
@@ -28,7 +28,7 @@ temperature=0.7
 top_p=0.8
 
 ## absolute path to the parent directory benchmark
-absolute_path=""
+absolute_path="/c2/swpark/Process_Code_for_Submission/Chain-of-Retrieval"
 
 
 if [[ ${use_query_optimizer} == False && ${multi_agent} == False ]]; then
@@ -81,7 +81,7 @@ while [ "$current_start" -lt "$total_indices" ]; do
     ((job_count++))
 
     if [ "$job_count" -eq 1 ]; then
-        export CUDA_VISIBLE_DEVICES=5
+        export CUDA_VISIBLE_DEVICES=4
         echo $CUDA_VISIBLE_DEVICES
     elif [ "$job_count" -eq 2 ]; then
         export CUDA_VISIBLE_DEVICES=3

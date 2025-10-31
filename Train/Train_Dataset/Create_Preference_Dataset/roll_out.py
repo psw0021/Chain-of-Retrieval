@@ -42,7 +42,7 @@ def config():
     parser.add_argument("--max_tokens", default=2000, type=int)
     parser.add_argument("--temperature", default=1.0, type=float)
     parser.add_argument("--top_p", default=0.8, type=float)
-    parser.add_argument("--absolute_path", default="", help="Absoluete path to the parent directory of benchmark")
+    parser.add_argument("--absolute_path", default="/c2/swpark/Process_Code_for_Submission/Chain-of-Retrieval", help="Absolute path to the parent directory of Paper2PaperRetrievalBench(SciFullBench + PatentFullBench)")
 
     args = parser.parse_args()
     
@@ -112,7 +112,7 @@ def format_paper_content(content):
 
 def filter_unnecessary_query(args, train_file_directories: list) -> list:    
     ## Format our test set(benchmark input paper information)
-    final_benchmark_root_directory = f"{args.absolute_path}/LongDocumentBench/ScientificPapers/Final_Dataset_w_citations_mentions_removed/Benchmark"
+    final_benchmark_root_directory = f"{args.absolute_path}/Paper2PaperRetrievalBench/SciFullBench/Final_Dataset_w_citations_mentions_removed/Benchmark"
     venues = ["ACL", "EMNLP", "ICLR", "NeurIPS"]
     relations = ["Cited_Papers", "Direct_References"]
     
@@ -137,7 +137,7 @@ def filter_unnecessary_query(args, train_file_directories: list) -> list:
                     except KeyError:
                         benchmark_existing_dictionary[format_paper_content(query_title)] = True
     
-    final_corpus_directory = f"{args.absolute_path}/LongDocumentBench/ScientificPapers/Final_Dataset_w_citations_mentions_removed/Target_Corpus/target_corpus_citations_removed_True_mentions_removed_True/corpus.json"
+    final_corpus_directory = f"{args.absolute_path}/Paper2PaperRetrievalBench/SciFullBench/Final_Dataset_w_citations_mentions_removed/Target_Corpus/target_corpus_citations_removed_True_mentions_removed_True/corpus.json"
     with open(final_corpus_directory, "r") as json_file:
         final_corpus = json.load(json_file)
 

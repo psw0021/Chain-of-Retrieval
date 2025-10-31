@@ -10,7 +10,7 @@ export CUDA_VISIBLE_DEVICES=6
 
 model_name="meta-llama/Llama-3.2-3B-Instruct"
 agent_name="method_agent"
-dataset="" ## Preference Dataset to train Method-Focused Query Optimizer Agents
+dataset="Jackson0018/Preference_Set_Llama-3.2-3B-Instruct_BGE_ref_as_gt_True_IterRet_individual_recall_True_top_k_30" ## Preference Dataset to train Method-Focused Query Optimizer Agents
 output_dir="Trained_Models/${dataset}/${model_name}/${agent_name}"
 bits=4
 report_to="wandb"
