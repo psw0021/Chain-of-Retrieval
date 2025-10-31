@@ -168,8 +168,8 @@ mkdir logs/logs_scimult
 bash Scripts/inference_QoA_parallel_ai_SciMult.sh
 ```
 
-### 🪄 How to Manually Create Preference Set
-#### 📊 Download TrainSet/Citation Information
+### 🪄 Manually Create Preference Set
+#### Download TrainSet/Citation Information
 ```bash
 ## Download train set for rollout from the huggingface repository and unzip.
 cd Train
@@ -183,19 +183,21 @@ cd Train
 python download_citation_info.py
 unzip Raw_Train_Dataset.zip -d Train_Dataset/
 ```
- 
+
+#### Run Rollout to Create Self-Generated Preference Set 
 ```bash
 ## Fill out the script file according to your needs and run roll out script file.
 conda activate paper_retrieval
 bash Train_Dataset/Scripts/roll_out_parallel.sh
 ```
 
+#### Create Preference Set using Self-Generated Rollout Data
 ```bash
 ## Set model and embedding model configurations you used for rollout properly into the config arguments in Train_Dataset/Create_Preference_Dataset/create_preference_dataset.py file.
 python Train_Dataset/Create_Preference_Dataset/create_preference_dataset.py
 ```
 
-### 🪄 How to Train Using Preference Set
+### 🪄 Train Using Preference Set
 ```bash
 ## If currently not in Train subdirectory(optional)
 cd Train
