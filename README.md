@@ -28,6 +28,11 @@ conda activate paper_retrieval
 mkdir logs
 ```
 
+```bash
+## Optional (If wish to train your custom models)
+conda env create -f environment_DPO_train.yml -n DPO_train
+```
+
 ### 📊 Download Benchmark
 ```bash
 ## Download benchmark from the huggingface repository and unzip to current directory
@@ -164,8 +169,23 @@ bash Scripts/inference_QoA_parallel_ai_SciMult.sh
 ```
 
 ### 🪄 How to Manually Create Preference Set
+#### 📊 Download TrainSet/Citation Information
 ```bash
+## Download train set for rollout from the huggingface repository and unzip.
 cd Train
+python download_trainset.py
+unzip Final_Train_Set.zip -d Train_Dataset/
+```
+
+```bash
+## Download raw semantic scholar information for rollout from the huggingface repository and unzip.
+cd Train
+python download_citation_info.py
+unzip Raw_Train_Dataset.zip -d Train_Dataset/
+```
+ 
+```bash
+## Fill out the script file according to your needs and run roll out script file.
 conda activate paper_retrieval
 bash Train_Dataset/Scripts/roll_out_parallel.sh
 ```
@@ -177,17 +197,17 @@ python Train_Dataset/Create_Preference_Dataset/create_preference_dataset.py
 
 ### 🪄 How to Train Using Preference Set
 ```bash
-## If currently not in Train subdirectory
+## If currently not in Train subdirectory(optional)
 cd Train
 conda activate DPO_train
 
-## train DPO method agent
+## Train DPO method agent(optional)
 bash Train/DPO_unsloth/DPO_train_method_agent.sh
 
-## train DPO experiment agent
+## Train DPO experiment agent(optional)
 bash Train/Train/DPO_unsloth/DPO_train_experiment_agent.sh
 
-### train DPO research question agent
+### Train DPO research question agent(optional)
 bash Train/Train/DPO_unsloth/DPO_train_research_question_agent.sh
 ```
 
