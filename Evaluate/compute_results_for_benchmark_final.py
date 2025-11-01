@@ -147,7 +147,7 @@ total_ndcg_500 = 0
 total_ndcg_1000 = 0
 number_of_test_sets = 0
 
-current = "Results/Benchmark/NeurIPS/Cited_Papers/remove_citations_True_remove_mentions_True/Use_QueryOptimizers/use_trained_model_True/Preference_Set_Llama-3.2-3B-Instruct_INFV_ref_as_gt_True_IterRet_individual_recall_True_top_k_30/meta-llama/Llama-3.2-3B-Instruct/use_multi_source_True/multi_agent_True_INCLUDE_ORIGINAL_RETRIEVAL_True_BASE_False_METHOD_True_RESEARCH_QUESTION_True_EXPERIMENT_True/inf-retriever-v1-1.5b_top_300_use_chunked_3000_True_use_full_paper_as_corpus_False/iteration_1"
+current = ""
 
 file_list = traverse_folder(current)
 print(current)
