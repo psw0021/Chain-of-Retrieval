@@ -27,7 +27,7 @@ def config():
     parser.add_argument("--use_reference_as_gt", default=True, type=bool)
     parser.add_argument("--dataset_for_iterative_retrieval", default=True, type=bool)
     parser.add_argument("--upload_to_huggingface", default=False, help="Whether to upload the created dataset to huggingface. Set True if you want to upload to huggingface.")
-    parser.add_argument("--absolute_path", default="/c2/swpark/Process_Code_for_Submission/Chain-of-Retrieval", help="Absolute path to the parent directory of Paper2PaperRetrievalBench(SciFullBench + PatentFullBench)")
+    parser.add_argument("--absolute_path", default="/c2/swpark/Chain-of-Retrieval", help="Absolute path to the parent directory of Paper2PaperRetrievalBench(SciFullBench + PatentFullBench)")
 
     args = parser.parse_args()
     

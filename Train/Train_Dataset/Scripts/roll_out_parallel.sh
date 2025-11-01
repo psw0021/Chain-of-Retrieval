@@ -28,7 +28,7 @@ temperature=0.7
 top_p=0.8
 
 ## absolute path to the parent directory benchmark
-absolute_path="/c2/swpark/Process_Code_for_Submission/Chain-of-Retrieval"
+absolute_path="/c2/swpark/Chain-of-Retrieval"
 
 
 if [[ ${use_query_optimizer} == False && ${multi_agent} == False ]]; then

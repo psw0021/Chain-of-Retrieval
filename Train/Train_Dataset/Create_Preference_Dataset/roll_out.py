@@ -42,7 +42,7 @@ def config():
     parser.add_argument("--max_tokens", default=2000, type=int)
     parser.add_argument("--temperature", default=1.0, type=float)
     parser.add_argument("--top_p", default=0.8, type=float)
-    parser.add_argument("--absolute_path", default="/c2/swpark/Process_Code_for_Submission/Chain-of-Retrieval", help="Absolute path to the parent directory of Paper2PaperRetrievalBench(SciFullBench + PatentFullBench)")
+    parser.add_argument("--absolute_path", default="/c2/swpark/Chain-of-Retrieval", help="Absolute path to the parent directory of Paper2PaperRetrievalBench(SciFullBench + PatentFullBench)")
 
     args = parser.parse_args()
     
