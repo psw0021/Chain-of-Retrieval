@@ -203,13 +203,19 @@ python Train_Dataset/Create_Preference_Dataset/create_preference_dataset.py
 ## If currently not in Train subdirectory(optional)
 cd Train
 conda activate DPO_train
+```
 
+```bash
 ## Train DPO method agent(optional)
 bash Train/DPO_unsloth/DPO_train_method_agent.sh
+```
 
+```bash
 ## Train DPO experiment agent(optional)
 bash Train/Train/DPO_unsloth/DPO_train_experiment_agent.sh
+```
 
+```bash
 ### Train DPO research question agent(optional)
 bash Train/Train/DPO_unsloth/DPO_train_research_question_agent.sh
 ```
